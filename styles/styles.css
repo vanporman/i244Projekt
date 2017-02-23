@@ -26,9 +26,27 @@
 }
 
 #order-container{
-    width: 300px;
+    width: auto;
 }
 
 #query-container{
     width: auto;
+}
+
+#query-forms{
+    background-color: #f2f2f2;
+    padding-top: 5px;
+    
+}
+
+#sales-query{
+    padding-bottom: 30px;
+}
+
+#sales-query-result{
+    text-align: center;
+}
+
+#sales-change-button{
+    margin-top: 10px;
 }

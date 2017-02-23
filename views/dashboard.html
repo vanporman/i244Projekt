@@ -14,27 +14,67 @@
               </div>
               <ul class="nav navbar-nav">
                   <li><a href="orders.html">Tellimused</a></li>
-                  <li><a href="#">Müügid</a></li>
-                  <li><a href="#">Demod</a></li>
-                  <li><a href="#">Kassa</a></li>
+                  <li><a href="sales.html">Müügid</a></li>
+                  <li><a href="demos.html">Demod</a></li>
+                  <li><a href="cashbox.html">Kassa</a></li>
               </ul>
           </div>
       </nav>
       
       <div class="container-fluid">
           <div class="row">
-              <div class="col-md-4" style="background-color:lavenderblush;">
-                  <p>Siin on label-id kassa tulud, kulud, kassa seis jne...</p>
+              <div class="col-md-6">
+                  <table class="table">
+                      <tbody>
+                        <tr>
+                            <td>Pakke kokku</td>
+                            <td>234</td>
+                        </tr>
+                        <tr>
+                            <td>Müüdud kokku</td>
+                            <td>160</td>
+                        </tr>
+                        <tr>
+                            <td>Ootel tellimusi</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>Demoks pakke</td>
+                            <td>25</td>
+                        </tr>
+                      </tbody>
+                  </table>
               </div>
-              <div class="col-md-8" style="background-color:lavender;">
-                  <p>Siia tulevad vastavad numbrid</p>
-              </div>
+              <div class="col-md-6">
+                  <table class="table">
+                      <tbody>
+                        <tr>
+                            <td>Tulud</td>
+                            <td>234</td>
+                        </tr>
+                        <tr>
+                            <td>Kulud</td>
+                            <td>160</td>
+                        </tr>
+                        <tr>
+                            <td>Kassa</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>      
           </div>
       </div>
       
-     <div class="container-fluid">
+      <hr>
+      
+     <div id="query-forms" class="container-fluid">
         <div class="row">
-            <div class="col-md-4" style="background-color:lavender;">
+            <div class="col-md-4">
                 <div id="query-container" class="container">
                     <h4>Tellimused</h4>
                     <form>
@@ -56,7 +96,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-4" style="background-color:lavenderblush;">
+            <div class="col-md-4">
                 <div id="query-container" class="container">
                     <h4>Müügid</h4>
                     <form>
@@ -78,7 +118,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-4" style="background-color:lavender;">
+            <div class="col-md-4">
                 <div id="query-container" class="container">
                     <h4>Demod</h4>
                     <form>
