@@ -1,0 +1,24 @@
+{
+  "name": "i244projekt",
+  "version": "1.0.0",
+  "description": "i244Projekt",
+  "main": "index.html",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanporman/i244Projekt.git"
+  },
+  "author": "Andreas Porman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanporman/i244Projekt/issues"
+  },
+  "homepage": "https://github.com/vanporman/i244Projekt#readme"
+}

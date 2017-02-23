@@ -1,0 +1,34 @@
+#login-container{
+    width: 200px;
+    margin-top: 15%;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #FDBB4D;
+    border-radius: 10px;
+}
+
+.checkbox{
+    /*margin-left: 5%;*/
+}
+
+.btn-kuuku{
+    color: #FFFFFF;
+    background-color: #673921;
+}
+
+.logintext{
+    color: #673921;
+}
+
+/*ajutine*/
+#login-btn-link{
+    color: #FFFFFF;
+}
+
+#order-container{
+    width: 300px;
+}
+
+#query-container{
+    width: auto;
+}

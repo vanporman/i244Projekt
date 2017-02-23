@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+      <nav class="navbar-default">
+          <div class="container-fluid">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Kuuku ülevaade</a>
+              </div>
+              <ul class="nav navbar-nav">
+                  <li><a href="orders.html">Tellimused</a></li>
+                  <li><a href="#">Müügid</a></li>
+                  <li><a href="#">Demod</a></li>
+                  <li><a href="#">Kassa</a></li>
+              </ul>
+          </div>
+      </nav>
+      
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-4" style="background-color:lavenderblush;">
+                  <p>Siin on label-id kassa tulud, kulud, kassa seis jne...</p>
+              </div>
+              <div class="col-md-8" style="background-color:lavender;">
+                  <p>Siia tulevad vastavad numbrid</p>
+              </div>
+          </div>
+      </div>
+      
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4" style="background-color:lavender;">
+                <div id="query-container" class="container">
+                    <h4>Tellimused</h4>
+                    <form>
+                        <div class="form-group">
+                            <label for="customer">Klient:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <p>OR</p>
+                        <div class="form-group">
+                            <label for="customer">Kuupäeva vahemik:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="customer" value="Ootel">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn">Saada päring</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4" style="background-color:lavenderblush;">
+                <div id="query-container" class="container">
+                    <h4>Müügid</h4>
+                    <form>
+                        <div class="form-group">
+                            <label for="customer">Klient:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <p>OR</p>
+                        <div class="form-group">
+                            <label for="customer">Kuupäeva vahemik:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="customer"  value="Müüdud">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn">Saada päring</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4" style="background-color:lavender;">
+                <div id="query-container" class="container">
+                    <h4>Demod</h4>
+                    <form>
+                        <div class="form-group">
+                            <label for="customer">Klient:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <p>OR</p>
+                        <div class="form-group">
+                            <label for="customer">Kuupäeva vahemik:</label>
+                            <input type="text" class="form-control" id="customer">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn">Saada päring</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <div class="container">
+        <h3>Tellimused</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Client SUM</th>
+                    <th>Amount SUM</th>
+                    <th>Order SUM</th>
+                    <th>Value SUM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SUM of Clients</td>
+                    <td>SUM of Packs</td>
+                    <td>Total of Orders</td>
+                    <td>Total Value</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Responsible</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Näide 1</td>
+                    <td>Näide 1</td>
+                    <td>Näide 1</td>
+                    <td>Näide 1</td>
+                    <td>Näide 1</td>
+                    <td>Näide 1</td>
+                </tr>
+                <tr>
+                    <td>Näide 2</td>
+                    <td>Näide 2</td>
+                    <td>Näide 2</td>
+                    <td>Näide 2</td>
+                    <td>Näide 2</td>
+                    <td>Näide 2</td>
+                </tr>
+                <tr>
+                    <td>jne</td>
+                    <td>jne</td>
+                    <td>jne</td>
+                    <td>jne</td>
+                    <td>jne</td>
+                    <td>jne</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+  </body>
+</html>
