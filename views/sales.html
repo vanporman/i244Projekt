@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/styles.css">
     <meta charset="UTF-8">
     <title>Müügid</title>
@@ -10,7 +10,7 @@
       <nav class="navbar-default">
           <div class="container-fluid">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="dashboard.html">Kuuku müügid</a>
+                  <a class="navbar-brand" href="dashboard.php">Kuuku müügid</a>
               </div>
               <ul class="nav navbar-nav">
                   <li><a href="orders.html">Tellimused</a></li>
@@ -24,8 +24,8 @@
       <div class="container-fluid">
           <h4>Müükide vormistamine</h4>
           <div class="row">
-              <div class="col-md-2"></div>
-              <div id="sales-query" class="col-md-8" style="background-color:#f2f2f2;">
+              <div class="col-md-1"></div>
+              <div id="sales-query" class="col-md-10" style="background-color:#f2f2f2;">
                   <h3>Müügid</h3>
                   <form class="form-inline">
                       <div class="form-group">
@@ -44,13 +44,14 @@
                       </div>
                   </form>
               </div>
-              <div class="col-md-2"></div>
+              <div class="col-md-1"></div>
           </div>
       </div>
       <hr>
       <div class="container-fluid">
           <div class="row">
-              <div id="sales-query-result" class="col-md-12">
+              <div class="col-md-1"></div>
+              <div id="sales-query-result" class="col-md-10">
                   <form class="form-inline">
                       <div class="form-group">
                           <label for="orderID">OrderID:</label>
@@ -101,9 +102,83 @@
                   </form>
                   <button type="submit" id="sales-change-btn" class="btn btn-danger">Muuda!</button>
               </div>
+              <div class="col-md-1"></div>
           </div>
       </div>
       <hr>
+      <div class="container-fluid">
+        <dic class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Müügid</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Client SUM</th>
+                            <th>Amount SUM</th>
+                            <th>Sold SUM</th>
+                            <th>Value SUM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SUM of Clients</td>
+                            <td>SUM of Packs</td>
+                            <td>Total of Sales</td>
+                            <td>Total Value</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Responsible</th>
+                            <th>Status</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Näide 1</td>
+                            <td>Näide 1</td>
+                            <td>Kuupäeva järgi</td>
+                            <td>Näide 1</td>
+                            <td>Näide 1</td>
+                            <td>Näide 1</td>
+                            <td>Näide 1</td>
+                            <td>Näide 1</td>
+                        </tr>
+                        <tr>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                            <td>Näide 2</td>
+                        </tr>
+                        <tr>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                            <td>jne</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>  
       
   </body>
 </html>

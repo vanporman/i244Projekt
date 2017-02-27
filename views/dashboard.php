@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="../node_modules/daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="daterange"]').daterangepicker();
+        });
+    </script>
     <meta charset="UTF-8">
     <title>Dashboard</title>
   </head>
@@ -85,7 +94,7 @@
                         <p>OR</p>
                         <div class="form-group">
                             <label for="customer">Kuupäeva vahemik:</label>
-                            <input type="text" class="form-control" id="customer">
+                            <input type="text" class="form-control" id="customer" name="daterange">
                         </div>
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="customer" value="Ootel">
@@ -98,6 +107,7 @@
             </div>
             <div class="col-md-4">
                 <div id="query-container" class="container">
+
                     <h4>Müügid</h4>
                     <form>
                         <div class="form-group">
@@ -107,7 +117,7 @@
                         <p>OR</p>
                         <div class="form-group">
                             <label for="customer">Kuupäeva vahemik:</label>
-                            <input type="text" class="form-control" id="customer">
+                            <input type="text" class="form-control" id="customer" name="daterange">
                         </div>
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="customer"  value="Müüdud">
@@ -129,7 +139,7 @@
                         <p>OR</p>
                         <div class="form-group">
                             <label for="customer">Kuupäeva vahemik:</label>
-                            <input type="text" class="form-control" id="customer">
+                            <input type="text" class="form-control" id="customer" name="daterange">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn">Saada päring</button>
@@ -142,66 +152,73 @@
     
     <hr>
     
-    <div class="container">
-        <h3>Tellimused</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Client SUM</th>
-                    <th>Amount SUM</th>
-                    <th>Order SUM</th>
-                    <th>Value SUM</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>SUM of Clients</td>
-                    <td>SUM of Packs</td>
-                    <td>Total of Orders</td>
-                    <td>Total Value</td>
-                    
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Order</th>
-                    <th>Client</th>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Price</th>
-                    <th>Responsible</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Näide 1</td>
-                    <td>Näide 1</td>
-                    <td>Näide 1</td>
-                    <td>Näide 1</td>
-                    <td>Näide 1</td>
-                    <td>Näide 1</td>
-                </tr>
-                <tr>
-                    <td>Näide 2</td>
-                    <td>Näide 2</td>
-                    <td>Näide 2</td>
-                    <td>Näide 2</td>
-                    <td>Näide 2</td>
-                    <td>Näide 2</td>
-                </tr>
-                <tr>
-                    <td>jne</td>
-                    <td>jne</td>
-                    <td>jne</td>
-                    <td>jne</td>
-                    <td>jne</td>
-                    <td>jne</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h3>Tellimused</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Client SUM</th>
+                            <th>Amount SUM</th>
+                            <th>Order SUM</th>
+                            <th>Value SUM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SUM of Clients</td>
+                            <td>SUM of Packs</td>
+                            <td>Total of Orders</td>
+                            <td>Total Value</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <?php
+                $host = "localhost";
+                $user = "test";
+                $pass = "t3st3r123";
+                $db = "test";
+
+                $connection = mysqli_connect($host, $user, $pass, $db);
+                $query = "SELECT * FROM vanporman_orders WHERE orderStatus = 'Ootel'";
+                $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
+                //$row = mysqli_fetch_assoc($result);
+                echo "<table class='table table-striped'>
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Responsible</th>
+                            <th>Status</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                while ($row = $result -> fetch_assoc()){
+                    echo "<tr>
+                            <td>". $row["orderID"]."</td>
+                            <td>". $row["customerName"]."</td>
+                            <td>". $row["orderDate"]."</td>
+                            <td>". $row["orderAmount"]."</td>
+                            <td>". $row["priceOfItem"]."</td>
+                            <td>". $row["whoIsResponsible"]."</td>
+                            <td>". $row["orderStatus"]."</td>
+                            <td>". $row["orderComments"]."</td>
+                        </tr>";
+                }
+                echo "</tbody>
+                      </table>";
+                mysqli_close($connection);
+                ?>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>  
   
   </body>
 </html>
