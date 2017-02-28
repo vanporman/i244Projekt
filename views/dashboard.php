@@ -193,6 +193,7 @@
                             <th>Date</th>
                             <th>Amount</th>
                             <th>Price</th>
+                            <th>Sum</th>
                             <th>Responsible</th>
                             <th>Status</th>
                             <th>Comments</th>
@@ -206,6 +207,7 @@
                             <td>". $row["orderDate"]."</td>
                             <td>". $row["orderAmount"]."</td>
                             <td>". $row["priceOfItem"]."</td>
+                            <td>". $row["sumOfOrder"]."</td>
                             <td>". $row["whoIsResponsible"]."</td>
                             <td>". $row["orderStatus"]."</td>
                             <td>". $row["orderComments"]."</td>

@@ -26,7 +26,7 @@
               <div class="col-sm-4" ></div>
               <div class="col-sm-4">
                   <h3>Tellimused</h3>
-                      <form action="insertOrders.php" method="post">
+                      <form action="../php_scripts/insertOrders.php" method="post" name="chipsOrders">
                           <div class="form-group">
                               <label for="customerName">Klient:</label>
                               <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Klient">
@@ -37,16 +37,25 @@
                           </div>
                           <div class="form-group">
                               <label for="orderAmount">Tellitud kogus:</label>
-                              <input type="number" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
+                              <select type="number" onChange="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
+                                <option value="1">1</option>
+                                <option value="10">10</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                              </select>
                           </div>
                           <div class="form-group">
                               <label for="priceOfItem">Paki hind:</label>
-                              <select class="form-control" id="priceOfItem" name="priceOfItem">
-                                  <option></option>
-                                  <option>2</option>
-                                  <option>2.5</option>
-                                  <option>3</option>
+                              <select class="form-control" onChange="calculatePrice()" id="priceOfItem" name="priceOfItem">
+                                  <option value="0"></option>
+                                  <option value="2">2</option>
+                                  <option value="2.5">2.5</option>
+                                  <option value="3">3</option>
                               </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="sumOfOrder">Sum</label>
+                              <input type="text" class="form-control" id="sumOfOrder" name="sumOfOrder">
                           </div>
                           <div class="form-group">
                               <label for="whoIsResponsible">Kes tegeleb:</label>
@@ -78,6 +87,7 @@
               <div class="col-sm-4"></div>
           </div>
       </div>
-      
+
+      <script type="text/javascript" src="../scripts/scripts.js"></script>
   </body>
 </html>
