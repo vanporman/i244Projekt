@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <!--<script type="text/javascript" href="../node_modules/jquery/dist/jquery.min.js"></script>-->
     <meta charset="UTF-8">
     <title>Tellimused</title>
   </head>
@@ -37,16 +38,11 @@
                           </div>
                           <div class="form-group">
                               <label for="orderAmount">Tellitud kogus:</label>
-                              <select type="number" onChange="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
-                                <option value="1">1</option>
-                                <option value="10">10</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                              </select>
+                              <input type="number" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
                           </div>
                           <div class="form-group">
                               <label for="priceOfItem">Paki hind:</label>
-                              <select class="form-control" onChange="calculatePrice()" id="priceOfItem" name="priceOfItem">
+                              <select class="form-control" onchange="calculatePrice()" id="priceOfItem" name="priceOfItem">
                                   <option value="0"></option>
                                   <option value="2">2</option>
                                   <option value="2.5">2.5</option>
@@ -54,8 +50,8 @@
                               </select>
                           </div>
                           <div class="form-group">
-                              <label for="sumOfOrder">Sum</label>
-                              <input type="text" class="form-control" id="sumOfOrder" name="sumOfOrder">
+                              <!--<label for="sumOfOrder">Summa:</label>-->
+                              <input type="hidden" class="form-control" id="sumOfOrder" name="sumOfOrder" readonly>
                           </div>
                           <div class="form-group">
                               <label for="whoIsResponsible">Kes tegeleb:</label>
