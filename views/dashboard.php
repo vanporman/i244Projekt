@@ -2,11 +2,11 @@
 <html>
   <head>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../styles/styles.css">
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../node_modules/daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="../node_modules/daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript">
         $(function() {
             $('input[name="daterange"]').daterangepicker();
