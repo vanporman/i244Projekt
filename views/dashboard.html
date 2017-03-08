@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear',
+                    format: 'YYYY-MM-DD'
+                }
+            });
+
+            $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+            });
+
+            $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+        });
+    </script>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="dashboard.php">Kuuku ülevaade</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="orders.html">Tellimused</a></li>
+                <li><a href="sales.html">Müügid</a></li>
+                <li><a href="demos.html">Demod</a></li>
+                <li><a href="cashbox.html">Kassa</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table table-sm">
+                    <tbody>
+                    <tr>
+                        <td>Pakke tehtud kokku:</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>Pakke müüdud kokku:</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Jaemüügid:</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Hulgimüügid:</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>Laadamüügid:</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-sm">
+                    <tbody>
+                    <tr>
+                        <td>Ootel tellmusi:</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td>Jaetellmused:</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Hulgitellimused</td>
+                        <td>35</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-sm">
+                    <tbody>
+                    <tr>
+                        <td>Demoks pakke:</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Pakke laos:</td>
+                        <td>5</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="customerName">Kliendi nimi:</label>
+                        <input type="text" class="form-control" id="customerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDate">Tellimuste kuupäev:</label>
+                        <input type="text" class="form-control" id="orderDate" placeholder="kas kuupäev või vahemik">
+                    </div>
+                    <div class="form-group">
+                        <label for="whoIsResponsible">Kes tegeles:</label>
+                        <select class="form-control" id="whoIsResponsible">
+                            <option></option>
+                            <option>Kiik</option>
+                            <option>Mikk</option>
+                            <option>Porman</option>
+                            <option>Vahur</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderStatus">Staatus</label>
+                        <select class="form-control" id="orderStatus">
+                            <option></option>
+                            <option>Jaeootel</option>
+                            <option>Hulgiootel</option>
+                            <option>Jaemüük</option>
+                            <option>Hulgimüük</option>
+                            <option>Üritustemüük</option>
+                            <option>Demopakk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn" onclick="return getQueryOrderResult();" value="Saada päring">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div id="queryTable"></div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -9,15 +9,18 @@
 //    $orderID = $_POST['orderID'];
     $customerName = $_POST['customerName'];
     $orderDate = $_POST['orderDate'];
+//    $saleDate = $_POST['saleDate'];
     $orderAmount = $_POST['orderAmount'];
     $priceOfItem = $_POST['priceOfItem'];
     $sumOfOrder = $_POST['sumOfOrder'];
-    $whoIsResponsible = $_POST['whoIsResponsible'];
+    $sizeOfPack = $_POST['sizeOfPack'];
     $orderStatus = $_POST['orderStatus'];
+    $whoIsResponsible = $_POST['whoIsResponsible'];
     $orderComments = $_POST['orderComments'];
 
-    $query = "INSERT INTO vanporman_orders "."(customerName, orderDate, orderAmount, priceOfItem, sumOfOrder, whoIsResponsible, orderStatus, 
-    orderComments) "."VALUES('$customerName', '$orderDate', '$orderAmount', '$priceOfItem', '$sumOfOrder', '$whoIsResponsible', '$orderStatus', '$orderComments')";
+    $query = "INSERT INTO vanporman_orders "."(customerName, orderDate, orderAmount, priceOfItem, sumOfOrder, sizeOfPack, orderStatus, whoIsResponsible, 
+    orderComments) "."VALUES('$customerName', '$orderDate', '$orderAmount', '$priceOfItem', '$sumOfOrder', '$sizeOfPack', '$orderStatus',
+    '$whoIsResponsible', '$orderComments')";
 
     //mysqli_select_db('test');
     $result = mysqli_query($connection, $query) or die("$query - " . mysqli_error($connection));

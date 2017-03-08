@@ -25,10 +25,10 @@
       <nav class="navbar-default">
           <div class="container-fluid">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="dashboard.php">Kuuku tellimused</a>
+                  <a class="navbar-brand" href="orders.html">Kuuku tellimused</a>
               </div>
               <ul class="nav navbar-nav">
-                  <li class="active"><a href="orders.html">Tellimused</a></li>
+                  <li><a href="dashboard.html">Kuuku ülevaade</a></li>
                   <li><a href="sales.html">Müügid</a></li>
                   <li><a href="demos.html">Demod</a></li>
                   <li><a href="cashbox.html">Kassa</a></li>
@@ -53,14 +53,17 @@
                           </div>
                           <div class="form-group">
                               <label for="orderAmount">Tellitud kogus:</label>
-                              <input type="number" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
+                              <input type="number" min="0" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
                           </div>
                           <div class="form-group">
                               <label for="priceOfItem">Paki hind:</label>
                               <select class="form-control" onchange="calculatePrice()" id="priceOfItem" name="priceOfItem">
-                                  <option value="0"></option>
+                                  <option disabled selected value=>-- vali paki hind --</option>
+                                  <option value="1">1</option>
+                                  <option value="1.5">1.5</option>
                                   <option value="2">2</option>
                                   <option value="2.5">2.5</option>
+                                  <option value="2.8">2.8</option>
                                   <option value="3">3</option>
                               </select>
                           </div>
@@ -69,21 +72,33 @@
                               <input type="hidden" class="form-control" id="sumOfOrder" name="sumOfOrder" readonly>
                           </div>
                           <div class="form-group">
-                              <label for="whoIsResponsible">Kes tegeleb:</label>
-                              <select class="form-control" id="whoIsResponsible" name="whoIsResponsible">
-                                  <option></option>
-                                  <option>Kiik</option>
-                                  <option>Mikk</option>
-                                  <option>Vahur</option>
-                                  <option>Porman</option>
+                              <label for="sizeOfPack">Paki suurus:</label>
+                              <select class="form-control" id="sizeOfPack" name="sizeOfPack">
+                                  <option disabled selected value=>-- vali paki suurus</option>
+                                  <option>50 g</option>
+                                  <option>90 g</option>
                               </select>
                           </div>
                           <div class="form-group">
                               <label for="orderStatus">Staatus:</label>
                               <select class="form-control" id="orderStatus" name="orderStatus">
-                                  <option></option>
-                                  <option>Ootel</option>
-                                  <option>Müüdud</option>
+                                  <option disabled selected value>-- vali staatus --</option>
+                                  <option>Jaeootel</option>
+                                  <option>Hulgiootel</option>
+                                  <option>Jaemüük</option>
+                                  <option>Hulgimüük</option>
+                                  <option>Üritustemüük</option>
+                                  <option>Demopakk</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="whoIsResponsible">Kes tegeleb:</label>
+                              <select class="form-control" id="whoIsResponsible" name="whoIsResponsible">
+                                  <option disabled selected value=>-- vali vastuav isik --</option>
+                                  <option>Kiik</option>
+                                  <option>Mikk</option>
+                                  <option>Vahur</option>
+                                  <option>Porman</option>
                               </select>
                           </div>
                           <div class="form-group">
