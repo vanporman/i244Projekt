@@ -100,7 +100,7 @@ function showOrdersFS(responseText) {
 //<---tellimuste tabeli algus --->
 function getQueryOrderResult() {
     getRequest(
-        '../php_scripts/showOrders.php',
+        '../php_scripts/showOrdersTest.php',
         showOrders,
         drawError
     );

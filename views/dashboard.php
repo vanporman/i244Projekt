@@ -43,7 +43,7 @@
               </ul>
           </div>
       </nav>
-      
+
       <div class="container-fluid">
           <div class="row">
               <div class="col-md-6">
@@ -89,12 +89,12 @@
                         </tr>
                       </tbody>
                   </table>
-              </div>      
+              </div>
           </div>
       </div>
-      
+
       <hr>
-      
+
      <div id="query-forms" class="container-fluid">
         <div class="row">
             <div class="col-md-4">

@@ -1,75 +1,120 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
-        <link rel="stylesheet" href="../styles/styles.css">
-        <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
-        <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script type="text/javascript" src="../scripts/scripts.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                $('input[name="orderDate"]').daterangepicker({
-                    autoUpdateInput: false,
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    locale: {
-                        cancelLabel: 'Clear',
-                        format: 'YYYY-MM-DD'
-                    }
-                });
-            });
-        </script>
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
+</head>
+<body>
+<!--<?php-->
+<!--$host = "localhost";-->
+<!--$user = "test";-->
+<!--$pass = "t3st3r123";-->
+<!--$db = "test";-->
 
-        <div id="query-forms" class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div id="query-container" class="container">
-                        <h4>Tellimused</h4>
-                        <form name="pendingOrders"> <!--onsubmit="showPendingOrders(this.value)"-->
-                            <div class="form-group">
-                                <label for="customerName">Klient:</label>
-                                <input type="text" class="form-control" id="customerName" name="customerName" onclick="showPendingOrders(this.value)">
-                                <!--<input type="text" class="form-control" id="customerName" name="customerName">-->
-                            </div>
-                            <p>OR</p>
-                            <!--<div class="form-group has-feedback">-->
-                                <!--<label for="dateRange">Kuupäeva vahemik:</label>-->
-                                <!--<input type="text" class="form-control" id="dateRange" name="orderDate" onchange="showPendingOrders(this.value)">-->
-                                <!--<i class="glyphicon glyphicon-calendar form-control-feedback"></i>-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="orderStatus">Staatus:</label>-->
-                                <!--<select class="form-control" id="orderStatus" name="orderStatus" onchange="showPendingOrders(this.value)">-->
-                                    <!--<option value="1">Ootel</option>-->
-                                    <!--<option value="2">Müüdud</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                            <div class="form-group">
-                                <input type="submit" class="btn" value="Saada Päring">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!--<div class="col-md-4">-->
-                    <!--<div id="query-container" class="container">-->
-                        <!--<h4>Müügid</h4>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-4">-->
-                    <!--<div id="query-container" class="container">-->
-                        <!--<h4>Demod</h4>-->
-                    <!--</div>-->
-                <!--</div>-->
-            </div>
+<!--$connection = mysqli_connect($host, $user, $pass, $db);-->
+
+<!--//$textChanger = '';-->
+<!--////$backgroundColor = '';-->
+<!--////$textColor = '';-->
+<!--////$borderThick = '';-->
+<!--//$borderType = '';-->
+<!--////$borderColor = '';-->
+<!--////$borderRadius = '';-->
+<!--//if ($_SERVER['REQUEST_METHOD'] == 'POST'){-->
+<!--//    if (isset($_POST['customerName']) && $_POST['customerName'] != ""){-->
+<!--//        $textChanger = htmlspecialchars($_POST['customerName']);-->
+<!--//    }-->
+<!--////    if (isset($_POST['backgroundColor']) && $_POST['backgroundColor'] != ""){-->
+<!--////        $backgroundColor = htmlspecialchars($_POST['backgroundColor']);-->
+<!--////    }-->
+<!--////    if (isset($_POST['textColor']) && $_POST['textColor'] != ""){-->
+<!--////        $textColor = htmlspecialchars($_POST['textColor']);-->
+<!--////    }-->
+<!--////    if (isset($_POST['borderThickness']) && $_POST['borderThickness'] != ""){-->
+<!--////        $borderThick = htmlspecialchars($_POST['borderThickness']);-->
+<!--////    }-->
+<!--//    if (isset($_POST['whoIsResponsible']) && $_POST['whoIsResponsible'] != ""){-->
+<!--//        $borderType = htmlspecialchars($_POST['whoIsResponsible']);-->
+<!--//    }-->
+<!--////    if (isset($_POST['borderColor']) && $_POST['borderColor'] != ""){-->
+<!--////        $borderColor = htmlspecialchars($_POST['borderColor']);-->
+<!--////    }-->
+<!--////    if (isset($_POST['borderRadius']) && $_POST['borderRadius'] != ""){-->
+<!--////        $borderRadius = htmlspecialchars($_POST['borderRadius']);-->
+<!--////    }-->
+<!--//}-->
+<!--//-->
+<!--//$query = "SELECT * FROM vanporman_orders WHERE customerName = '$textChanger'";-->
+<!--////$query = "SELECT * FROM vanporman_orders";-->
+<!--//$result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));-->
+<!--//-->
+<!--//echo $query;-->
+
+<!--echo "<table class='table table-striped'>-->
+            <!--<thead>-->
+                <!--<tr>-->
+
+                    <!--<th>Client</th>-->
+                    <!---->
+                    <!--<th>Status</th>-->
+                    <!--<th>Responsible</th>-->
+                    <!---->
+                <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>";-->
+<!--while ($row = $result -> fetch_assoc()){-->
+    <!--echo "<tr>-->
+                <!--<td>". $row['customerName']."</td>-->
+                <!---->
+                <!--<td>". $row['orderStatus']."</td>-->
+                <!--<td>". $row['whoIsResponsible']."</td>-->
+                <!---->
+            <!--</tr>";-->
+<!--}-->
+<!--echo "</tbody>-->
+            <!--</table>";-->
+
+<!--?>-->
+<div>
+    <form action="../php_scripts/showOrdersTest.php" method="post">
+        <table border="1">
+            <tr>
+                <td colspan="2">
+                    <label for="customerName">Kliendi nimi:</label>
+                    <input type="text" class="form-control" name="customerName" id="customerName">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select name="whoIsResponsible">
+                        <option value="">no border</option>
+                        <option value="Kiik" selected>Kiik</option>
+                        <option value="Mikk">Mikk</option>
+                        <option value="Vahur">Vahur</option>
+                        <option value="Porman">Porman</option>
+                    </select>
+                    <label> : Vastutav</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" onclick="return getQueryOrderResult();" value="Punch it, Chewie!">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div id="queryTable">Siia peaks tulema tabel</div>
         </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
 
-        <hr>
-        <div id="txtHint"><b>Tabel peaks tulema siia.</b></div>
-    </body>
+</body>
 </html>

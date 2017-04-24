@@ -40,24 +40,8 @@
     echo "</tbody>
             </table>";
 
-//    $customerName = $_POST['customerName'];
-    if (isset($_POST['customerName']) && $_POST['customerName'] != ""){
-        $cn = htmlspecialchars($_POST['customerName']);
-    }
-//    if (isset($cn)){
-//        echo $cn;
-//    }
-//    if (empty($customerName)){
-//        $query = "SELECT * FROM vanporman_orders";
-//    } else {
-//        $query = "SELECT * FROM vanporman_orders WHERE orderSatus LIKE '%" . $customerName .  "%' ";
-//    }
-    $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cn'";
+    $query = "SELECT * FROM vanporman_orders";
     $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
-    //$row = mysqli_fetch_assoc($result);
-    echo $query;
-    echo $_POST['customerName'];
-    echo $cn;
     echo "<table class='table table-striped'>
             <thead>
                 <tr>
@@ -92,8 +76,5 @@
     }
     echo "</tbody>
             </table>";
-
-
-
     mysqli_close($connection);
 ?>
