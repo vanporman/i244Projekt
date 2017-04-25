@@ -7,7 +7,6 @@
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
     <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript" src="../scripts/scripts.js"></script>
     <script type="text/javascript">
         $(function() {
             $('input[name="daterange"]').daterangepicker({
@@ -31,7 +30,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
-<body onload="showRetailHistory(); showWholesaleHistory(); showFairsaleHistory();">
+<body>
 <nav class="navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -41,7 +40,7 @@
             <li><a href="orders.html">Tellimused</a></li>
             <li><a href="sales.html">Müügid</a></li>
             <li><a href="demos.html">Demod</a></li>
-<!--            <li><a href="cashbox.html">Kassa</a></li>-->
+            <li><a href="cashbox.html">Kassa</a></li>
         </ul>
     </div>
 </nav>
@@ -148,7 +147,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-info" value="Saada päring">
+                    <input type="submit" class="btn" value="Saada päring">
                 </div>
             </form>
         </div>
@@ -178,9 +177,9 @@
                 if (isset($_POST['customerName']) && $_POST['customerName'] != ""){
                     $cN = htmlspecialchars($_POST['customerName']);
                 }
-                if (isset($_POST['daterange']) && $_POST['daterange'] != ""){
-                    $dR = htmlspecialchars($_POST['daterange']);
-                }
+              if (isset($_POST['daterange']) && $_POST['daterange'] != ""){
+                  $dR = htmlspecialchars($_POST['daterange']);
+              }
 //              if (isset($_POST['textColor']) && $_POST['textColor'] != ""){
 //                  $textColor = htmlspecialchars($_POST['textColor']);
 //              }
@@ -190,22 +189,22 @@
                 if (isset($_POST['whoIsResponsible']) && $_POST['whoIsResponsible'] != ""){
                     $wIR = htmlspecialchars($_POST['whoIsResponsible']);
                 }
-                if (isset($_POST['orderStatus']) && $_POST['orderStatus'] != ""){
-                    $oS = htmlspecialchars($_POST['orderStatus']);
-                }
+              if (isset($_POST['orderStatus']) && $_POST['orderStatus'] != ""){
+                  $oS = htmlspecialchars($_POST['orderStatus']);
+              }
 //              if (isset($_POST['borderRadius']) && $_POST['borderRadius'] != ""){
 //                  $borderRadius = htmlspecialchars($_POST['borderRadius']);
 //              }
             }
 
             $connection = mysqli_connect($host, $user, $pass, $db);
-            if (!empty($cN || $dR || $wIR)){
+            if (!empty($dR)){
                 $query_sum = "SELECT COUNT(customerName) AS KlienteKokku,
                               SUM(orderAmount) AS TellimusiKokku,
                               COUNT(orderStatus) AS OotelTellimusi,
                               SUM(sumOfOrder) AS SummaKokku
                               FROM vanporman_orders
-                              WHERE whoIsResponsible = '$wIR'";
+                              WHERE orderDate BETWEEN '$dR'";
                 $result = mysqli_query($connection, $query_sum) or die("$query_sum - ".mysqli_error($connection));
                 echo "<table class='table'>
                         <thead>
@@ -230,15 +229,12 @@
 
             }
             if (!empty($cN || $dR || $wIR)){
-                $query = "SELECT * FROM vanporman_orders 
-                          WHERE customerName = '$cN' 
-                          OR whoIsResponsible = '$wIR' 
-                          ";
+                $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND whoIsResponsible = '$wIR' OR orderDate BETWEEN '$dR'";
             } else {
                 $query = "SELECT * FROM vanporman_orders";
             }
-            //            $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' OR whoIsResponsible = '$wIR'";
-            //$query = "SELECT * FROM vanporman_orders"; <!--OR orderDate BETWEEN '$dR'-->
+//            $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' OR whoIsResponsible = '$wIR'";
+            //$query = "SELECT * FROM vanporman_orders";
             $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 
             echo $query;

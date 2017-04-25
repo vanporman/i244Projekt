@@ -98,26 +98,26 @@ function showOrdersFS(responseText) {
 //     xmlhttp.send();
 // }
 //<---tellimuste tabeli algus --->
-function getQueryOrderResult() {
-    getRequest(
-        '../php_scripts/showOrdersTest.php',
-        showOrders,
-        drawError
-    );
-    return false;
-}
-
-function drawError() {
-    var container = document.getElementById('queryTable');
-    container.innerHTML = 'Bummer: there was an error!';
-}
-
-function showOrders(responseText) {
-    var container = document.getElementById('queryTable');
-    container.innerHTML = responseText;
-}
-//<---tellimuste tabeli lõpp--->
-
+// function getQueryOrderResult() {
+//     getRequest(
+//         '../php_scripts/showOrders.php',
+//         showOrders,
+//         drawError
+//     );
+//     return false;
+// }
+//
+// function drawError() {
+//     var container = document.getElementById('queryTable');
+//     container.innerHTML = 'Bummer: there was an error!';
+// }
+//
+// function showOrders(responseText) {
+//     var container = document.getElementById('queryTable');
+//     container.innerHTML = responseText;
+// }
+// //<---tellimuste tabeli lõpp--->
+//
 // helper function for cross-browser request object
 function getRequest(url, success, error) {
     var req = false;
