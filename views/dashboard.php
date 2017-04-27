@@ -120,6 +120,14 @@
                     <label for="cn">Kliendi nimi:</label>
                     <input type="text" class="form-control" name="customerName" id="cn">
                 </div>
+                <div class="form-group">
+                    <label for="aO">VÕI või JA:</label>
+                    <select class="form-control" name="andOr" id="aO">
+                        <option value=""></option>
+                        <option value="OR">VÕI</option>
+                        <option value="AND">JA</option>
+                    </select>
+                </div>
                 <div class="form-group has-feedback">
                     <label for="od">Tellimuste kuupäev:</label>
                     <input type="text" class="form-control" id="od" name="daterange" placeholder="kas kuupäev või vahemik">
@@ -168,8 +176,8 @@
             $db = "test";
 
             $cN = '';
+            $aO = '';
             $dR = '';
-            //$textColor = '';
             //$borderThick = '';
             $wIR = '';
             $oS = '';
@@ -178,12 +186,12 @@
                 if (isset($_POST['customerName']) && $_POST['customerName'] != ""){
                     $cN = htmlspecialchars($_POST['customerName']);
                 }
+              if (isset($_POST['andOr']) && $_POST['andOr'] != ""){
+                  $aO = htmlspecialchars($_POST['andOr']);
+              }
                 if (isset($_POST['daterange']) && $_POST['daterange'] != ""){
                     $dR = htmlspecialchars($_POST['daterange']);
                 }
-//              if (isset($_POST['textColor']) && $_POST['textColor'] != ""){
-//                  $textColor = htmlspecialchars($_POST['textColor']);
-//              }
 //              if (isset($_POST['borderThickness']) && $_POST['borderThickness'] != ""){
 //                  $borderThick = htmlspecialchars($_POST['borderThickness']);
 //              }
@@ -199,13 +207,22 @@
             }
 
             $connection = mysqli_connect($host, $user, $pass, $db);
+
+            if ($aO == 'OR'){
+                $aO = 'OR';
+            } else {
+                $aO = 'AND';
+            }
+
             if (!empty($cN || $dR || $wIR)){
                 $query_sum = "SELECT COUNT(customerName) AS KlienteKokku,
                               SUM(orderAmount) AS TellimusiKokku,
                               COUNT(orderStatus) AS OotelTellimusi,
                               SUM(sumOfOrder) AS SummaKokku
                               FROM vanporman_orders
-                              WHERE whoIsResponsible = '$wIR'";
+                              WHERE customerName = '$cN'
+                              $aO orderDate = '$dR'
+                              $aO whoIsResponsible = '$wIR'";
                 $result = mysqli_query($connection, $query_sum) or die("$query_sum - ".mysqli_error($connection));
                 echo "<table class='table'>
                         <thead>
@@ -229,10 +246,12 @@
                       </table>";
 
             }
+
             if (!empty($cN || $dR || $wIR)){
                 $query = "SELECT * FROM vanporman_orders 
                           WHERE customerName = '$cN' 
-                          OR whoIsResponsible = '$wIR' 
+                          $aO orderDate = '$dR'
+                          $aO whoIsResponsible = '$wIR' 
                           ";
             } else {
                 $query = "SELECT * FROM vanporman_orders";
