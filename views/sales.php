@@ -10,7 +10,7 @@
       <nav class="navbar-default">
           <div class="container-fluid">
               <div class="navbar-header">
-                  <a class="navbar-brand" href="sales.html">Kuuku müügid</a>
+                  <a class="navbar-brand" href="sales.php">Kuuku müügid</a>
               </div>
               <ul class="nav navbar-nav">
                   <li><a href="orders.html">Tellimused</a></li>

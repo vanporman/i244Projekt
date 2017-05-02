@@ -38,7 +38,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="orders.html">Tellimused</a></li>
-            <li><a href="sales.html">Müügid</a></li>
+            <li><a href="sales.php">Müügid</a></li>
             <li><a href="demos.html">Demod</a></li>
             <li><a href="cashbox.html">Kassa</a></li>
         </ul>
