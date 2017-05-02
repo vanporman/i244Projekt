@@ -2,7 +2,43 @@
 <html>
   <head>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="../scripts/scripts.js"></script>
+    <script type="text/javascript">
+      $(function() {
+          $('input[name="daterange"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel: 'Clear',
+                  format: 'YYYY-MM-DD'
+              },
+
+          });
+
+          $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('YYYY-MM-DD\'') + ' AND ' + picker.endDate.format('\'YYYY-MM-DD'));
+          });
+
+          $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+      });
+
+      $(function(){
+          $('input[name="saleDate"]').daterangepicker({
+              singleDatePicker: true,
+              showDropdowns: true,
+              locale: {
+                  format: 'YYYY-MM-DD'
+              }
+          });
+      });
+
+    </script>
     <meta charset="UTF-8">
     <title>Müügid</title>
   </head>
@@ -27,18 +63,19 @@
               <div class="col-md-1"></div>
               <div id="sales-query" class="col-md-10" style="background-color:#f2f2f2;">
                   <h3>Müügid</h3>
-                  <form class="form-inline">
+                  <form action="" method="post" class="form-inline">
                       <div class="form-group">
-                          <label for="clientName">Kliendi nimi:</label>
-                          <input type="text" class="form-control" id="clientName" name="clientName">
+                          <label for="cN">Kliendi nimi:</label>
+                          <input type="text" class="form-control" name="customerName" id="cN">
                       </div>
-                      <div class="form-group">
-                          <label for="orderDate">Tellimuse kuupäev:</label>
-                          <input type="date" class="form-control" id="orderDate" name="orderDate">
+                      <div class="form-group has-feedback">
+                          <label for="oD">Tellimuse kuupäev:</label>
+                          <input type="text" class="form-control" id="oD" name="daterange" placeholder="kas kuupäev või vahemik">
+                          <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                       </div>
-                      <div class="form-group">
-                          <input type="hidden" name="orderStatus" value="orderStatus">
-                      </div>
+<!--                      <div class="form-group">-->
+<!--                          <input type="hidden" name="orderStatus" value="orderStatus">-->
+<!--                      </div>-->
                       <div class="form-group">
                           <button type="submit" class="btn">Otsi</button>
                       </div>
@@ -52,132 +89,147 @@
           <div class="row">
               <div class="col-md-1"></div>
               <div id="sales-query-result" class="col-md-10">
-                  <form class="form-inline">
-                      <div class="form-group">
-                          <label for="orderID">OrderID:</label>
-                          <p class="form-control-static">KK000117</p>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="clientName">Client:</label>
-                          <p class="form-control-static">Klient 1</p>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="orderDate">Date:</label>
-                          <input type="date" class="form-control" id="orderDate" name="orderDate">
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="orderAmount">Amount:</label>
-                          <p class="form-control-static">10</p>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="itemPrice">Price:</label>
-                          <p class="form-control-static">2.50</p>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="responsible">Responsible:</label>
-                          <p class="form-control-static">Üks meist</p>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="status">Status:</label>
-                          <select class="form-control" id="status" name="orderStatus">
-                              <option></option>
-                              <option>Ootel</option>
-                              <option>Müüdud</option>
-                          </select>
-                      </div>
-                      |
-                      <div class="form-group">
-                          <label for="responsible">Comments:</label>
-                          <p class="form-control-static">Some text</p>
-                      </div>
-                      <div class="form-group">
-                          <!-- seotud nupp -->
-                      </div>
-                  </form>
-                  <button type="submit" id="sales-change-btn" class="btn btn-danger">Muuda!</button>
-              </div>
-              <div class="col-md-1"></div>
-          </div>
+                  <?php
+                    $host = "localhost";
+                    $user = "test";
+                    $pass = "t3st3r123";
+                    $db = "test";
+
+                    $oID = '';
+                    $cN = '';
+                    $dR = '';
+
+                    $sD = '';
+                    $oS = '';
+
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if (isset($_POST['customerName']) && $_POST['customerName'] != "") {
+                            $cN = htmlspecialchars($_POST['customerName']);
+                        }
+                        if (isset($_POST['daterange']) && $_POST['daterange'] != "") {
+                            $dR = htmlspecialchars($_POST['daterange']);
+                        }
+                    }
+
+                    $connection = mysqli_connect($host, $user, $pass, $db);
+
+                    if (!empty($cN) && empty($dR)){
+                        $query = "SELECT * FROM vanporman_orders
+                                  WHERE customerName = '$cN'
+                                  AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
+                    } else if (!empty($dR) && empty($cN)){
+                        $query = "SELECT * FROM vanporman_orders
+                                  WHERE orderDate BETWEEN '$dR'
+                                  AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
+                    } else if (!empty($cN) && !empty($dR)){
+                        $query = "SELECT * FROM vanporman_orders
+                                  WHERE customerName = '$cN'
+                                  AND orderDate BETWEEN '$dR'
+                                  AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
+//                    } else if (empty($cN) && empty($dR)) {
+//                        $query = "SELECT * FROM vanporman_orders
+//                                  WHERE customerName = '$cN'
+//                                  OR orderDate BETWEEN '$dR'";
+                    } else {
+                        echo "<p>tyhjus</p>";
+                    }
+
+                    if (isset($_POST['customerName']) || isset($_POST['daterange'])  ){
+                        echo $query;
+                        if ($result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection))){
+                            while ($row=mysqli_fetch_assoc($result)){
+                                echo "<form action='' method='post' class='form-inline'>
+                                    <div class='form-group'>
+                                        <label for='oID'>OrderID:</label>
+                                        <p>".$row['orderID']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='cN'>Client:</label>
+                                        <p>".$row['customerName']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='oD'>DateOfOrder:</label>
+                                        <p>".$row['orderDate']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group has-feedback'>
+                                        <label for='sD'>DateOfSale:</label>
+                                        <p><input type='text' class='form-control' id='oD' name='saleDate'></p>
+                                        <i class='glyphicon glyphicon-calendar form-control-feedback'></i>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='aM'>OrderAmount:</label>
+                                        <p>".$row['orderAmount']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='pOI'>PriceOfItem:</label>
+                                        <p>".$row['priceOfItem']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='sOF'>SumOfOrder:</label>
+                                        <p>".$row['sumOfOrder']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='sOP'>SizeOfPack:</label>
+                                        <p>".$row['sizeOfPack']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='oS'>OrderStatus:</label>
+                                        <p><select class='form-control' id='oS' name='orderStatus'><br>
+                                            <option value=''>".$row['orderStatus']."</option>
+                                            <option value='Jaemüük'>Jaemüük</option>
+                                            <option value='Hulgimüük'>Hulgimüük</option>
+                                        </select></p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='wIR'>WhoIsResponsible:</label>
+                                        <p>".$row['whoIsResponsible']."</p>
+                                    </div>
+                                    |
+                                    <div class='form-group'>
+                                        <label for='oC'>Comments:</label>
+                                        <p>".$row['orderComments']."</p>
+                                    </div>
+                                    <div class='form-group'>
+                                        <input type='submit' class='btn btn-danger' value='Muuda!'>
+                                    </div>
+                                </form>";
+                            }
+                            mysqli_free_result($result);
+                        }
+                    }
+                    mysqli_close($connection);
+
+                    $connection2 = mysqli_connect($host, $user, $pass, $db);
+
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        if (isset($_POST['saleDate']) && $_POST['saleDate'] != "") {
+                        $sD = htmlspecialchars($_POST['saleDate']);
+                        }
+                        if (isset($_POST['orderStatus']) && $_POST['orderStatus'] != "") {
+                        $oS = htmlspecialchars($_POST['orderStatus']);
+                        }
+                    }
+
+                    //WHERE saleDate = unikaalne ID!!! see tuleb genereerida
+                    $query2 = "UPDATE vanporman_orders SET saleDate = '$sD' WHERE saleDate = '0000-00-00'";
+
+                    $result2 = mysqli_query($connection2, $query2) or die("$query2 - ".mysqli_error($connection2));
+
+                    mysqli_close($connection2);
+
+                    ?>
       </div>
       <hr>
-      <div class="container-fluid">
-        <dic class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <h3>Müügid</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Client SUM</th>
-                            <th>Amount SUM</th>
-                            <th>Sold SUM</th>
-                            <th>Value SUM</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>SUM of Clients</td>
-                            <td>SUM of Packs</td>
-                            <td>Total of Sales</td>
-                            <td>Total Value</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Order</th>
-                            <th>Client</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Price</th>
-                            <th>Responsible</th>
-                            <th>Status</th>
-                            <th>Comment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Näide 1</td>
-                            <td>Näide 1</td>
-                            <td>Kuupäeva järgi</td>
-                            <td>Näide 1</td>
-                            <td>Näide 1</td>
-                            <td>Näide 1</td>
-                            <td>Näide 1</td>
-                            <td>Näide 1</td>
-                        </tr>
-                        <tr>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                            <td>Näide 2</td>
-                        </tr>
-                        <tr>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                            <td>jne</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
+
     </div>  
       
   </body>
