@@ -1,0 +1,23 @@
+<div id="login-container" class="container">
+    <h4 class="logintext">Logi sisse</h4>
+    <form action="?page=login" method="POST">
+        <div class="form-group">
+            <label class="logintext" for="usrname">Kasutajanimi</label>
+            <input type="text" class="form-control" id="usrname" name="username" placeholder="kastuaja">
+        </div>
+        <div class="form-group">
+            <label class="logintext" for="psw">Parool</label>
+            <input type="password" class="form-control" id="psw" name="password" placeholder="parool">
+        </div>
+        <!--<div class="checkbox">-->
+            <!--<label class="logintext"><input type="checkbox">Jäta mind meelde</labe>-->
+        <!--</div>-->
+        <!-- a link on ajutine, kuniks päris login tööle hakkab -->
+        <input type="submit" class="btn btn-kuuku" value="Sisse"><!--a id="login-btn-link" href="views/dashboard.php">Sisse</a-->
+    </form>
+    <?php if (isset($errors)):?>
+    <?php foreach($errors as $error):?>
+    <div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+    <?php endforeach;?>
+    <?php endif;?>
+</div>

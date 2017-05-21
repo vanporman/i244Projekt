@@ -26,6 +26,6 @@
     $result = mysqli_query($connection, $query) or die("$query - " . mysqli_error($connection));
     mysqli_close($connection);
 
-    header('Location: ../views/orders.html');
+    header('Location: /views/orders.html');
     exit;
 ?>

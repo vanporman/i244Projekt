@@ -41,7 +41,7 @@
             <li><a href="orders.html">Tellimused</a></li>
             <li><a href="sales.php">Müügid</a></li>
             <li><a href="demos.html">Demod</a></li>
-<!--            <li><a href="cashbox.html">Kassa</a></li>-->
+            <!--            <li><a href="cashbox.html">Kassa</a></li>-->
         </ul>
     </div>
 </nav>
@@ -120,14 +120,6 @@
                     <label for="cn">Kliendi nimi:</label>
                     <input type="text" class="form-control" name="customerName" id="cn">
                 </div>
-<!--                <div class="form-group">-->
-<!--                    <label for="aO">VÕI või JA:</label>-->
-<!--                    <select class="form-control" name="andOr" id="aO">-->
-<!--                        <option value=""></option>-->
-<!--                        <option value="OR">VÕI</option>-->
-<!--                        <option value="AND">JA</option>-->
-<!--                    </select>-->
-<!--                </div>-->
                 <div class="form-group has-feedback">
                     <label for="od">Tellimuste kuupäev:</label>
                     <input type="text" class="form-control" id="od" name="daterange" placeholder="kas kuupäev või vahemik">
@@ -178,23 +170,15 @@
             $cN = '';
             $aO = '';
             $dR = '';
-            //$borderThick = '';
             $wIR = '';
             $oS = '';
-            //$borderRadius = '';
             if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if (isset($_POST['customerName']) && $_POST['customerName'] != ""){
                     $cN = htmlspecialchars($_POST['customerName']);
                 }
-//              if (isset($_POST['andOr']) && $_POST['andOr'] != ""){
-//                  $aO = htmlspecialchars($_POST['andOr']);
-//              }
                 if (isset($_POST['daterange']) && $_POST['daterange'] != ""){
                     $dR = htmlspecialchars($_POST['daterange']);
                 }
-//              if (isset($_POST['borderThickness']) && $_POST['borderThickness'] != ""){
-//                  $borderThick = htmlspecialchars($_POST['borderThickness']);
-//              }
                 if (isset($_POST['whoIsResponsible']) && $_POST['whoIsResponsible'] != ""){
                     $wIR = htmlspecialchars($_POST['whoIsResponsible']);
                 }
@@ -204,12 +188,6 @@
             }
 
             $connection = mysqli_connect($host, $user, $pass, $db);
-
-//            if ($aO == 'OR'){
-//                $aO = 'OR';
-//            } else {
-//                $aO = 'AND';
-//            }
 
             if (!empty($cN || $dR || $wIR)){
                 $query_sum = "SELECT COUNT(customerName) AS KlienteKokku,
@@ -245,75 +223,75 @@
             }
 
             //yhekaupa
-            IF (!empty($cN) && empty($dR) && empty($wIR) && empty($oS)){
+            if (!empty($cN) && empty($dR) && empty($wIR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'";
-            } ELSE IF (!empty($dR) && empty($cN) && empty($wIR) && empty($oS)){
+            } elseif (!empty($dR) && empty($cN) && empty($wIR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
                           WHERE orderDate BETWEEN '$dR'";
-            } ELSE IF (!empty($wIR) && empty($cN) && empty($dR) && empty($oS)){
+            } elseif (!empty($wIR) && empty($cN) && empty($dR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
                           WHERE whoIsResponsible = '$wIR'";
-            } ELSE IF (!empty($oS) && empty($cN) && empty($dR) && empty($wIR)){
+            } elseif (!empty($oS) && empty($cN) && empty($dR) && empty($wIR)){
                 $query = "SELECT * FROM vanporman_orders
                           WHERE orderStatus = '$oS'";
             }
             //kahekaupa customerName-iga
-            ELSE IF (!empty($cN) && !empty($dR) && empty($wIR) && empty($oS)){
+            elseif (!empty($cN) && !empty($dR) && empty($wIR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND orderDate BETWEEN '$dR'";
-            } ELSE IF (!empty($cN) && !empty($wIR) && empty($dR) && empty($oS)){
+            } elseif (!empty($cN) && !empty($wIR) && empty($dR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND whoIsResponsible = '$wIR'";
-            } ELSE IF (!empty($cN) && !empty($oS) && empty($dR) && empty($wIR)){
+            } elseif (!empty($cN) && !empty($oS) && empty($dR) && empty($wIR)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND orderStatus = '$oS'";
             }
             //kahekaupa orderDate-iga
-            ELSE IF (!empty($dR) && !empty($wIR) && empty($cN) && empty($oS)){
+            elseif (!empty($dR) && !empty($wIR) && empty($cN) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE orderDate BETWEEN '$dR'
 			              AND whoIsResponsible = '$wIR'";
-            } ELSE IF (!empty($dR) && !empty($oS) && empty($cN) && empty($wIR)){
+            } elseif (!empty($dR) && !empty($oS) && empty($cN) && empty($wIR)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE orderDate BETWEEN '$dR'
 			              AND orderStatus = '$oS'";
             }
             //kahekaupa whoIsResponsible-ga
-            ELSE IF (!empty($wIR) && !empty($oS) && empty($cN) && empty($dR)){
+            elseif (!empty($wIR) && !empty($oS) && empty($cN) && empty($dR)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE whoIsResponsible = '$wIR'
 			              AND orderStatus = '$oS'";
             }
             //kolmekaupa customerName-iga
-            ELSE IF (!empty($cN) && !empty($dR) && !empty($wIR) && empty($oS)){
+            elseif (!empty($cN) && !empty($dR) && !empty($wIR) && empty($oS)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND orderDate BETWEEN '$dR'
 			              AND whoIsResponsible = '$wIR'";
-            } ELSE IF (!empty($cN) && !empty($dR) && !empty($oS) && empty($wIR)){
+            } elseif (!empty($cN) && !empty($dR) && !empty($oS) && empty($wIR)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND orderDate BETWEEN '$dR'
 			              AND orderStatus = '$oS'";
-            } ELSE IF (!empty($cN) && !empty($wIR) && !empty($oS) && empty($dR)){
+            } elseif (!empty($cN) && !empty($wIR) && !empty($oS) && empty($dR)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE customerName = '$cN'
 			              AND whoIsResponsible '$wIR'
 			              AND orderStatus = '$oS'";
             }
             //kolmekaupa orderDate-iga
-            ELSE IF (!empty($dR) && !empty($wIR) && !empty($oS) && empty($cN)){
+            elseif (!empty($dR) && !empty($wIR) && !empty($oS) && empty($cN)){
                 $query = "SELECT * FROM vanporman_orders
 			              WHERE orderDate BETWEEN '$dR'
 			              AND whoIsResponsible = '$wIR'
 			              AND orderStatus = '$oS'";
             }
             //v6i p2ring
-            ELSE IF (!empty($cN || $dR || $wIR || $oS)){
+            elseif (!empty($cN || $dR || $wIR || $oS)){
                 $query = "SELECT * FROM vanporman_orders 
                           WHERE customerName = '$cN'
                           OR orderDate BETWEEN '$dR'
@@ -321,20 +299,10 @@
                           OR orderStatus = '$oS'";
             }
             //k6ik
-            ELSE {
+            else {
                 $query = "SELECT * FROM vanporman_orders";
             }
-//            if (!empty($cN || $dR || $wIR)){
-//                $query = "SELECT * FROM vanporman_orders
-//                          WHERE customerName = '$cN'
-//                          $aO orderDate = '$dR'
-//                          $aO whoIsResponsible = '$wIR'
-//                          ";
-//            } else {
-//                $query = "SELECT * FROM vanporman_orders";
-//            }
-            //            $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' OR whoIsResponsible = '$wIR'";
-            //$query = "SELECT * FROM vanporman_orders"; <!--OR orderDate BETWEEN '$dR'-->
+
             $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 
             echo $query;

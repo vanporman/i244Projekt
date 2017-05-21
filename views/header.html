@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="modules/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript" src="modules/jquery/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="modules/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript" src="modules/daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="scripts/scripts.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear',
+                    format: 'YYYY-MM-DD'
+                },
+
+            });
+
+            $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD\'') + ' AND ' + picker.endDate.format('\'YYYY-MM-DD'));
+            });
+
+            $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+        });
+
+        $(function(){
+            $('input[name="orderDate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+        });
+
+        $(function(){
+            $('input[name="saleDate"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+        });
+    </script>
+    <meta charset="UTF-8">
+    <title>Kuuku</title>
+</head>
+<body>
+    <nav class="navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://www.facebook.com/kuukukrops/">Kuuku</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <?php if(isset($_SESSION['user']) && $_SESSION['role'] == 'admin' || $_SESSION['role'] == 'user'): ?>
+                <li><a href="?page=dashboard">Ülevaade</a></li>
+                <li><a href="?page=orders">Tellimused</a></li>
+                <li><a href="?page=sales">Müügid</a></li>
+                <li><a href="?page=demos">Demod</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="?page=logout">Logi välja</a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </nav>
+    <div>

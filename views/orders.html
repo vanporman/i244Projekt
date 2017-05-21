@@ -1,119 +1,77 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css " href="../styles/styles.css">
-    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $('input[name="orderDate"]').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                locale: {
-                    format: 'YYYY-MM-DD'
-                }
-            });
-        });
-    </script>
-    <meta charset="UTF-8">
-    <title>Tellimused</title>
-  </head>
-  <body>
-      <nav class="navbar-default">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="orders.html">Kuuku tellimused</a>
-              </div>
-              <ul class="nav navbar-nav">
-                  <li><a href="dashboard.php">Kuuku ülevaade</a></li>
-                  <li><a href="sales.php">Müügid</a></li>
-                  <li><a href="demos.html">Demod</a></li>
-                  <!--<li><a href="cashbox.html">Kassa</a></li>-->
-              </ul>
-          </div>
-      </nav>
-      
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-sm-4" ></div>
-              <div class="col-sm-4">
-                  <h3>Tellimused</h3>
-                      <form action="../php_scripts/insertOrders.php" method="post" name="chipsOrders">
-                          <div class="form-group">
-                              <label for="customerName">Klient:</label>
-                              <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Klient">
-                          </div>
-                          <div class="form-group has-feedback">
-                              <label for="orderDate">Tellimuse kuupäev:</label>
-                              <input type="text" class="form-control" id="orderDate" name="orderDate">
-                              <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
-                          </div>
-                          <div class="form-group">
-                              <label for="orderAmount">Tellitud kogus:</label>
-                              <input type="number" min="0" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
-                          </div>
-                          <div class="form-group">
-                              <label for="priceOfItem">Paki hind:</label>
-                              <select class="form-control" onchange="calculatePrice()" id="priceOfItem" name="priceOfItem">
-                                  <option disabled selected value=>-- vali paki hind --</option>
-                                  <option value="1">1</option>
-                                  <option value="1.5">1.5</option>
-                                  <option value="2">2</option>
-                                  <option value="2.5">2.5</option>
-                                  <option value="2.8">2.8</option>
-                                  <option value="3">3</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <!--<label for="sumOfOrder">Summa:</label>-->
-                              <input type="hidden" class="form-control" id="sumOfOrder" name="sumOfOrder" readonly>
-                          </div>
-                          <div class="form-group">
-                              <label for="sizeOfPack">Paki suurus:</label>
-                              <select class="form-control" id="sizeOfPack" name="sizeOfPack">
-                                  <option disabled selected value=>-- vali paki suurus</option>
-                                  <option>50 g</option>
-                                  <option>90 g</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="orderStatus">Staatus:</label>
-                              <select class="form-control" id="orderStatus" name="orderStatus">
-                                  <option disabled selected value>-- vali staatus --</option>
-                                  <option>Jaeootel</option>
-                                  <option>Hulgiootel</option>
-                                  <option>Jaemüük</option>
-                                  <option>Hulgimüük</option>
-                                  <option>Üritustemüük</option>
-                                  <option>Demopakk</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="whoIsResponsible">Kes tegeleb:</label>
-                              <select class="form-control" id="whoIsResponsible" name="whoIsResponsible">
-                                  <option disabled selected value=>-- vali vastuav isik --</option>
-                                  <option>Kiik</option>
-                                  <option>Mikk</option>
-                                  <option>Vahur</option>
-                                  <option>Porman</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="orderComments">Lisainfo:</label>
-                              <textarea class="form-control" id="orderComments" name="orderComments"></textarea>
-                          </div>
-                          <div class="form-group">
-                              <input type="submit" class="btn" value="Sisesta">
-                          </div>
-                      </form>
-              </div>
-              <div class="col-sm-4"></div>
-          </div>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-sm-4" ></div>
+      <div class="col-sm-4">
+          <h3>Tellimused</h3>
+              <form action="?page=orders" method="POST" name="chipsOrders">
+                  <div class="form-group">
+                      <label for="customerName">Klient:</label>
+                      <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Klient">
+                  </div>
+                  <div class="form-group has-feedback">
+                      <label for="orderDate">Tellimuse kuupäev:</label>
+                      <input type="text" class="form-control" id="orderDate" name="orderDate">
+                      <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+                  </div>
+                  <div class="form-group">
+                      <label for="orderAmount">Tellitud kogus:</label>
+                      <input type="number" min="0" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
+                  </div>
+                  <div class="form-group">
+                      <label for="priceOfItem">Paki hind:</label>
+                      <select class="form-control" onchange="calculatePrice()" id="priceOfItem" name="priceOfItem">
+                          <option disabled selected value=>-- vali paki hind --</option>
+                          <option value="1">1</option>
+                          <option value="1.5">1.5</option>
+                          <option value="2">2</option>
+                          <option value="2.5">2.5</option>
+                          <option value="2.8">2.8</option>
+                          <option value="3">3</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <!--<label for="sumOfOrder">Summa:</label>-->
+                      <input type="hidden" class="form-control" id="sumOfOrder" name="sumOfOrder" readonly>
+                  </div>
+                  <div class="form-group">
+                      <label for="sizeOfPack">Paki suurus:</label>
+                      <select class="form-control" id="sizeOfPack" name="sizeOfPack">
+                          <option disabled selected value=>-- vali paki suurus</option>
+                          <option>50 g</option>
+                          <option>90 g</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="orderStatus">Staatus:</label>
+                      <select class="form-control" id="orderStatus" name="orderStatus">
+                          <option disabled selected value>-- vali staatus --</option>
+                          <option>Jaeootel</option>
+                          <option>Hulgiootel</option>
+                          <option>Jaemüük</option>
+                          <option>Hulgimüük</option>
+                          <option>Üritustemüük</option>
+                          <option>Demopakk</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="whoIsResponsible">Kes tegeleb:</label>
+                      <select class="form-control" id="whoIsResponsible" name="whoIsResponsible">
+                          <option disabled selected value=>-- vali vastuav isik --</option>
+                          <option>Kiik</option>
+                          <option>Mikk</option>
+                          <option>Vahur</option>
+                          <option>Porman</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="orderComments">Lisainfo:</label>
+                      <textarea class="form-control" id="orderComments" name="orderComments"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <input type="submit" name="sent" class="btn" value="Sisesta">
+                  </div>
+              </form>
       </div>
-
-      <script type="text/javascript" src="../scripts/scripts.js"></script>
-  </body>
-</html>
+      <div class="col-sm-4"></div>
+  </div>
+</div>

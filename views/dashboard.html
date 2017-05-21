@@ -1,168 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/bootstrap-daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="../node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript" src="../scripts/scripts.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                autoUpdateInput: false,
-                locale: {
-                    cancelLabel: 'Clear',
-                    format: 'YYYY-MM-DD'
-                }
-            });
 
-            $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-            });
+<!--<body onload="showRetailHistory(); showWholesaleHistory(); showFairsaleHistory();">-->
 
-            $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-                $(this).val('');
-            });
-        });
-    </script>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body onload="showRetailHistory(); showWholesaleHistory(); showFairsaleHistory();">
-    <nav class="navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="dashboard.html">Kuuku ülevaade</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="orders.html">Tellimused</a></li>
-                <li><a href="sales.php">Müügid</a></li>
-                <li><a href="demos.html">Demod</a></li>
-                <!--<li><a href="cashbox.html">Kassa</a></li>-->
-            </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <table class="table table-sm">
+                <tbody>
+                <tr>
+                    <td>Pakke tehtud kokku:</td>
+                    <td id="sumOfProduct"></td>
+                </tr>
+                <tr>
+                    <td>Pakke müüdud kokku:</td>
+                    <td id="sumOfSales"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-                <table class="table table-sm">
-                    <tbody>
-                    <tr>
-                        <td>Pakke tehtud kokku:</td>
-                        <td id="sumOfProduct"></td>
-                    </tr>
-                    <tr>
-                        <td>Pakke müüdud kokku:</td>
-                        <td id="sumOfSales"></td>
-                    </tr>
-                    <tr>
-                        <td>Jaemüügid:</td>
-                        <td  id="retailSale"></td>
-                    </tr>
-                    <tr>
-                        <td>Hulgimüügid:</td>
-                        <td id="wholeSale"></td>
-                    </tr>
-                    <tr>
-                        <td>Laadamüügid:</td>
-                        <td id="fairSale"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-                <table class="table table-sm">
-                    <tbody>
-                    <tr>
-                        <td>Ootel tellmusi:</td>
-                        <td id="ordersInLine"></td>
-                    </tr>
-                    <tr>
-                        <td>Jaetellmused:</td>
-                        <td id="orderRetail"></td>
-                    </tr>
-                    <tr>
-                        <td>Hulgitellimused</td>
-                        <td id="orderWholesale"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-md-4">
-                <table class="table table-sm">
-                    <tbody>
-                    <tr>
-                        <td>Demoks pakke:</td>
-                        <td id="demoPacks"></td>
-                    </tr>
-                    <tr>
-                        <td>Pakke laos:</td>
-                        <td id="productInStock"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-md-3">
+            <table class="table table-sm">
+                <tbody>
+                <tr>
+                    <td>Jaemüügid:</td>
+                    <td  id="retailSale"></td>
+                </tr>
+                <tr>
+                    <td>Hulgimüügid:</td>
+                    <td id="wholeSale"></td>
+                </tr>
+                <tr>
+                    <td>Laadamüügid:</td>
+                    <td id="fairSale"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <table class="table table-sm">
+                <tbody>
+                <tr>
+                    <td>Ootel tellmusi:</td>
+                    <td id="ordersInLine"></td>
+                </tr>
+                <tr>
+                    <td>Jaetellmused:</td>
+                    <td id="orderRetail"></td>
+                </tr>
+                <tr>
+                    <td>Hulgitellimused</td>
+                    <td id="orderWholesale"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <table class="table table-sm">
+                <tbody>
+                <tr>
+                    <td>Demoks pakke:</td>
+                    <td id="demoPacks"></td>
+                </tr>
+                <tr>
+                    <td>Pakke laos:</td>
+                    <td id="productInStock"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <hr>
+<hr>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <form action="../php_scripts/showOrders.php" method="post" class="form-inline">
-                    <div class="form-group">
-                        <label for="cN">Kliendi nimi:</label>
-                        <input type="text" class="form-control" name="customerName" id="cN">
-                    </div>
-                    <div class="form-group">
-                        <label for="orderDate">Tellimuste kuupäev:</label>
-                        <input type="text" class="form-control" id="orderDate" placeholder="kas kuupäev või vahemik">
-                    </div>
-                    <div class="form-group">
-                        <label for="whoIsResponsible">Kes tegeles:</label>
-                        <select class="form-control" name="whoIsResponsible" id="whoIsResponsible">
-                            <option></option>
-                            <option>Kiik</option>
-                            <option>Mikk</option>
-                            <option>Porman</option>
-                            <option>Vahur</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="orderStatus">Staatus</label>
-                        <select class="form-control" id="orderStatus">
-                            <option></option>
-                            <option>Jaeootel</option>
-                            <option>Hulgiootel</option>
-                            <option>Jaemüük</option>
-                            <option>Hulgimüük</option>
-                            <option>Üritustemüük</option>
-                            <option>Demopakk</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn" onclick="return getQueryOrderResult();" value="Saada päring">
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-1"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <form action="?page=dashboard" method="POST" class="form-inline">
+                <div class="form-group">
+                    <label for="cN">Kliendi nimi:</label>
+                    <input type="text" class="form-control" name="customerName" id="cN">
+                </div>
+                <div class="form-group">
+                    <label for="orderDate">Tellimuste kuupäev:</label>
+                    <input type="text" class="form-control" id="orderDate" name="daterange" placeholder="kas kuupäev või vahemik">
+                </div>
+                <div class="form-group">
+                    <label for="whoIsResponsible">Kes tegeles:</label>
+                    <select class="form-control" name="whoIsResponsible" id="whoIsResponsible">
+                        <option></option>
+                        <option>Kiik</option>
+                        <option>Mikk</option>
+                        <option>Porman</option>
+                        <option>Vahur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="orderStatus">Staatus</label>
+                    <select class="form-control" name="orderStatus" id="orderStatus">
+                        <option></option>
+                        <option>Jaeootel</option>
+                        <option>Hulgiootel</option>
+                        <option>Jaemüük</option>
+                        <option>Hulgimüük</option>
+                        <option>Üritustemüük</option>
+                        <option>Demopakk</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-info" value="Saada päring">
+                </div>
+            </form>
         </div>
+        <div class="col-md-1"></div>
     </div>
-    <hr>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div id="queryTable"></div>
-            </div>
-            <div class="col-md-2"></div>
+</div>
+<hr>
+<?php if (!empty($_SESSION['user'])) echo "<h1>Tere tulemast ".$_SESSION['user']."</h1>"?>
+<p style="color:red">
+    <?php if (!empty($_SESSION['uus_id'])){
+		echo 'Uue rea id: '.$_SESSION['uus_id'];
+		unset($_SESSION['uus_id']);
+	}?>
+</p>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-1'></div>
+        <div class='col-md-10'>
+            <table class='table table-striped'>
+            <thead>
+            <tr>
+                <th>Order</th>
+                <th>Client</th>
+                <th>DateofOrder</th>
+                <th>DateofSale</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Sum</th>
+                <th>Size</th>
+                <th>Status</th>
+                <th>Responsible</th>
+                <th>Comments</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                    if(!empty($ourOrders)):
+                    foreach ($ourOrders as $id => $order):
+            ?>
+            <tr>
+                <td><?php echo htmlspecialchars($order['orderID']); ?></td>
+                <td><?php echo htmlspecialchars($order['customerName']); ?></td>
+                <td><?php echo htmlspecialchars($order['orderDate']); ?></td>
+                <td><?php echo htmlspecialchars($order['saleDate']); ?></td>
+                <td><?php echo htmlspecialchars($order['orderAmount']); ?></td>
+                <td><?php echo htmlspecialchars($order['priceOfItem']); ?></td>
+                <td><?php echo htmlspecialchars($order['sumOfOrder']); ?></td>
+                <td><?php echo htmlspecialchars($order['sizeOfPack']); ?></td>
+                <td><?php echo htmlspecialchars($order['orderStatus']); ?></td>
+                <td><?php echo htmlspecialchars($order['whoIsResponsible']); ?></td>
+                <td><?php echo htmlspecialchars($order['orderComments']); ?></td>
+            </tr>
+            <?php
+                    endforeach;
+                    endif;
+                ?>
+            </tbody>
+            </table>
         </div>
+        <div class='col-md-1'></div>
     </div>
-
-</body>
-</html>
+</div>
