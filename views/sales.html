@@ -55,27 +55,43 @@
                     <td><?php echo htmlspecialchars($order['orderID']); ?></td>
                     <td><?php echo htmlspecialchars($order['customerName']); ?></td>
                     <td><?php echo htmlspecialchars($order['orderDate']); ?></td>
-                    <td><?php echo htmlspecialchars($order['saleDate']); ?></td>
+                    <td>
+                        <form id="saleChange" action="?page=makeSales" method="POST">
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" name="singledate" value="<?php echo htmlspecialchars($order['saleDate']); ?>"/>
+                                <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+                            </div>
+                        </form>
+                    </td>
                     <td><?php echo htmlspecialchars($order['orderAmount']); ?></td>
                     <td><?php echo htmlspecialchars($order['priceOfItem']); ?></td>
                     <td><?php echo htmlspecialchars($order['sumOfOrder']); ?></td>
                     <td><?php echo htmlspecialchars($order['sizeOfPack']); ?></td>
-                    <td><?php echo htmlspecialchars($order['orderStatus']); ?></td>
+                    <td>
+                        <select class="form-control" name="statusOfOrder" value="<?php echo htmlspecialchars($order['orderStatus']); ?>" form="saleChange">
+                        <option value=''><?php echo $order['orderStatus']; ?></option>
+                        <option value='Jaemüük'>Jaemüük</option>
+                        <option value='Hulgimüük'>Hulgimüük</option>
+                        </select>
+                    </td>
                     <td><?php echo htmlspecialchars($order['whoIsResponsible']); ?></td>
                     <td><?php echo htmlspecialchars($order['orderComments']); ?></td>
                 </tr>
                 <?php
                     endforeach;
+                ?>
+                    <td><input type="submit" class="btn btn-danger" value="Muuda" form="saleChange"></td>
+                <?php
                     endif;
                 ?>
                 </tbody>
             </table>
-        </div>
-        <div class='col-md-1'></div>
-    </div>
+</div>
+<div class='col-md-1'></div>
+</div>
 </div>
 
-  <!--<div class="container-fluid">-->
+<!--<div class="container-fluid">-->
       <!--<h4>Müükide vormistamine</h4>-->
       <!--<div class="row">-->
           <!--<div class="col-md-1"></div>-->

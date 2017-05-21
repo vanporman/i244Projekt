@@ -221,9 +221,9 @@ function sale(){
 
     if (!empty($cN) && empty($dR)){
         $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
-    } else if (!empty($dR) && empty($cN)){
+    } elseif (!empty($dR) && empty($cN)){
         $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
-    } else if (!empty($cN) && !empty($dR)){
+    } elseif (!empty($cN) && !empty($dR)){
         $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
     }
 
@@ -235,3 +235,7 @@ function sale(){
     include_once('views/sales.html');
 }
 
+function makeSale(){
+
+    include_once ('views/sales.html');
+}
