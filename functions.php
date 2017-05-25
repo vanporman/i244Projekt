@@ -127,7 +127,7 @@ function showOrders(){
     }
     //k6ik
     else {
-        $query = "SELECT * FROM vanporman_orders";
+        $query = "SELECT * FROM vanporman_orders ORDER BY orderID DESC";
     }
 
     $result = mysqli_query($connection, $query);
@@ -157,8 +157,8 @@ function insertOrders(){
         if (isset($_POST['customerName']) && $_POST['customerName'] != ""){
             $customerName = htmlspecialchars($_POST['customerName']);
         }
-        if (isset($_POST['orderDate']) && $_POST['orderDate'] != ""){
-            $orderDate = htmlspecialchars($_POST['orderDate']);
+        if (isset($_POST['singledate']) && $_POST['singledate'] != ""){
+            $orderDate = htmlspecialchars($_POST['singledate']);
         }
         if (isset($_POST['orderAmount']) && $_POST['orderAmount'] != ""){
             $orderAmount = htmlspecialchars($_POST['orderAmount']);
@@ -208,7 +208,7 @@ function sale(){
     $changeOrders = array();
     $cN = '';
     $dR = '';
-    $query = '';
+//    $query = '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['customerName']) && $_POST['customerName'] != "") {
@@ -223,19 +223,60 @@ function sale(){
         $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
     } elseif (!empty($dR) && empty($cN)){
         $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
-    } elseif (!empty($cN) && !empty($dR)){
+    } else {
         $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND orderStatus IN ('Jaeootel', 'Hulgiootel')";
     }
 
     $result = mysqli_query($connection, $query);
+    $value = mysqli_fetch_assoc($result);
+    $myrow = $value;
 
-    while ($row = mysqli_fetch_assoc($result)){
-        $changeOrders[] = $row;
-    };
+//    while ($row = mysqli_fetch_assoc($result)){
+//        $changeOrders[] = $row;
+//    };
     include_once('views/sales.html');
 }
 
 function makeSale(){
+
+    global $connection;
+
+    $id = '';
+    $sD = '';
+    $sOO = '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['id']) && $_POST['id'] != ''){
+            $id = mysqli_real_escape_string($connection, $_POST['id']);
+        }
+        if (isset($_POST['singledate']) && $_POST['singledate'] != ""){
+            $sD = htmlspecialchars($_POST['singledate']);
+        }
+        if (isset($_POST['statusOfOrder']) && $_POST['statusOfOrder'] != ""){
+            $sOO = htmlspecialchars($_POST['statusOfOrder']);
+        } else {
+            $query1 = "SELECT orderStatus FROM vanporman_orders WHERE orderID = '$id'";
+            $result1 = mysqli_query($connection, $query1);
+            $value1 = mysqli_fetch_assoc($result1);
+            $sOO = $value1['orderStatus'];
+        }
+    }
+
+    $query = "UPDATE vanporman_orders SET saleDate = '$sD', orderStatus = '$sOO' WHERE orderID = '$id'";
+
+    $result = mysqli_query($connection, $query);
+
+    if ($result){
+        $ourSales = array();
+
+        $query = "SELECT * FROM vanporman_orders WHERE orderID = '$id'";
+        $result = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_assoc($result)){
+            $ourSales[] = $row;
+        };
+    }
+
 
     include_once ('views/sales.html');
 }

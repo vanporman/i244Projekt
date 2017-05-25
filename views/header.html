@@ -38,20 +38,20 @@
             });
         });
 
-        $(function(){
-            $('input[name="saleDate"]').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                locale: {
-                    format: 'YYYY-MM-DD'
-                }
-            });
-        });
+//        $(function(){
+//            $('input[name="saleDate"]').daterangepicker({
+//                singleDatePicker: true,
+//                showDropdowns: true,
+//                locale: {
+//                    format: 'YYYY-MM-DD'
+//                }
+//            });
+//        });
     </script>
     <meta charset="UTF-8">
     <title>Kuuku</title>
 </head>
-<body>
+<body onload="showRetailHistory(); showWholesaleHistory(); showFairsaleHistory()">
     <nav class="navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
