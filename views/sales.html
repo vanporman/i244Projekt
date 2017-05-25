@@ -47,23 +47,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!--<?php-->
-
-                    <!--foreach ($changeOrders as $id => $order):-->
-                <!--?>-->
                 <tr>
                     <td>
                         <form id="saleChange" action="?page=makeSales" method="POST">
                             <div class="form-group has-feedback">
-                                <input type="text" class="form-control" name="id" value="<?php echo htmlspecialchars($value['orderID']); ?>" readonly/>
+                                <input type="hidden" class="form-control" name="id" value="<?php echo htmlspecialchars($value['orderID']); ?>"/>
+                                <?php echo htmlspecialchars($value['orderID']); ?>
                             </div>
                         </form>
-                        <?php echo htmlspecialchars($value['orderID']); ?></td>
+                    </td>
                     <td><?php echo htmlspecialchars($value['customerName']); ?></td>
                     <td><?php echo htmlspecialchars($value['orderDate']); ?></td>
                     <td>
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control" name="singledate" form="saleChange"/>
+                            <input type="text" class="form-control" name="singledate" form="saleChange" required/>
                             <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                         </div>
                     </td>
@@ -72,7 +69,7 @@
                     <td><?php echo htmlspecialchars($value['sumOfOrder']); ?></td>
                     <td><?php echo htmlspecialchars($value['sizeOfPack']); ?></td>
                     <td>
-                        <select class="form-control" name="statusOfOrder" value="<?php echo htmlspecialchars($value['orderStatus']); ?>" form="saleChange">
+                        <select class="form-control" name="statusOfOrder" value="<?php echo htmlspecialchars($value['orderStatus']); ?>" form="saleChange" required>
                         <option value=''><?php echo $value['orderStatus']; ?></option>
                         <option value='Jaemüük'>Jaemüük</option>
                         <option value='Hulgimüük'>Hulgimüük</option>
@@ -81,10 +78,9 @@
                     <td><?php echo htmlspecialchars($value['whoIsResponsible']); ?></td>
                     <td><?php echo htmlspecialchars($value['orderComments']); ?></td>
                 </tr>
-                <!--<?php-->
-                    <!--endforeach;-->
-                <!--?>-->
+                <tr>
                     <td><input type="submit" class="btn btn-danger" value="Muuda" form="saleChange"></td>
+                </tr>
                 <?php
                     endif;
                 ?>
@@ -102,7 +98,7 @@
             <?php
                 if(!empty($ourSales)):
             ?>
-            <p>Tellimus muudetud müügiks</p>
+            <p style="color:red;">Müük kinnitatud!</p>
             <table class='table table-striped'>
                 <thead>
                 <tr>

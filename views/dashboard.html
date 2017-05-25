@@ -76,7 +76,7 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <form action="?page=dashboard" method="POST" class="form-inline">
+            <form id="queryTable" action="?page=dashboard" method="POST" class="form-inline">
                 <div class="form-group">
                     <label for="cN">Kliendi nimi:</label>
                     <input type="text" class="form-control" name="customerName" id="cN">
@@ -107,10 +107,11 @@
                         <option>Demopakk</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-info" value="Saada päring">
-                </div>
+
             </form>
+            <div class="form-group" style="display: table; margin: 0 auto; padding-top: 5px;">
+                <input type="submit" class="btn btn-info" value="Saada päring" form="queryTable">
+            </div>
         </div>
         <div class="col-md-1"></div>
     </div>

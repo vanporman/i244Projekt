@@ -2,20 +2,20 @@
   <div class="row">
       <div class="col-sm-4" ></div>
       <div class="col-sm-4">
-          <h3>Tellimused</h3>
+          <h3>Tellimused <?php if (isset($confirm)): ?><span style="color:red; padding-top: 5px; font-size: 60%"><?php echo $confirm; ?></span><?php endif; ?></h3>
               <form action="?page=orders" method="POST" name="chipsOrders">
                   <div class="form-group">
                       <label for="customerName">Klient:</label>
-                      <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Klient">
+                      <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Klient" required>
                   </div>
                   <div class="form-group has-feedback">
                       <label for="orderDate">Tellimuse kuupäev:</label>
-                      <input type="text" class="form-control" id="orderDate" name="singledate">
+                      <input type="text" class="form-control" id="orderDate" name="singledate" required>
                       <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
                   </div>
                   <div class="form-group">
                       <label for="orderAmount">Tellitud kogus:</label>
-                      <input type="number" min="0" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus">
+                      <input type="number" min="0" onblur="calculatePrice()" class="form-control" id="orderAmount" name="orderAmount" placeholder="Kogus" required>
                   </div>
                   <div class="form-group">
                       <label for="priceOfItem">Paki hind:</label>
@@ -35,7 +35,7 @@
                   </div>
                   <div class="form-group">
                       <label for="sizeOfPack">Paki suurus:</label>
-                      <select class="form-control" id="sizeOfPack" name="sizeOfPack">
+                      <select class="form-control" id="sizeOfPack" name="sizeOfPack" required>
                           <option disabled selected value=>-- vali paki suurus</option>
                           <option>50 g</option>
                           <option>90 g</option>
@@ -43,7 +43,7 @@
                   </div>
                   <div class="form-group">
                       <label for="orderStatus">Staatus:</label>
-                      <select class="form-control" id="orderStatus" name="orderStatus">
+                      <select class="form-control" id="orderStatus" name="orderStatus" required>
                           <option disabled selected value>-- vali staatus --</option>
                           <option>Jaeootel</option>
                           <option>Hulgiootel</option>
@@ -55,7 +55,7 @@
                   </div>
                   <div class="form-group">
                       <label for="whoIsResponsible">Kes tegeleb:</label>
-                      <select class="form-control" id="whoIsResponsible" name="whoIsResponsible">
+                      <select class="form-control" id="whoIsResponsible" name="whoIsResponsible" required>
                           <option disabled selected value=>-- vali vastuav isik --</option>
                           <option>Kiik</option>
                           <option>Mikk</option>
