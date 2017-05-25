@@ -37,16 +37,6 @@
                 }
             });
         });
-
-//        $(function(){
-//            $('input[name="saleDate"]').daterangepicker({
-//                singleDatePicker: true,
-//                showDropdowns: true,
-//                locale: {
-//                    format: 'YYYY-MM-DD'
-//                }
-//            });
-//        });
     </script>
     <meta charset="UTF-8">
     <title>Kuuku</title>
@@ -63,8 +53,11 @@
                 <li><a href="?page=orders">Tellimused</a></li>
                 <li><a href="?page=sales">Müügid</a></li>
                 <li><a href="?page=demos">Demod</a></li>
+                <li><a href="#">Ladu?</a></li>
+                <li><a href="#">Kustuta ridu?</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href=""><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
                 <li><a href="?page=logout">Logi välja</a></li>
                 <?php endif; ?>
             </ul>
