@@ -56,7 +56,7 @@
                   <div class="form-group">
                       <label for="whoIsResponsible">Kes tegeleb:</label>
                       <select class="form-control" id="whoIsResponsible" name="whoIsResponsible" required>
-                          <option disabled selected value=>-- vali vastuav isik --</option>
+                          <option><?php echo $_SESSION['user'] ?></option>
                           <option>Kiik</option>
                           <option>Mikk</option>
                           <option>Vahur</option>
