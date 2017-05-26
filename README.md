@@ -3,6 +3,7 @@ i244Projekt
 Projekt: lao/müügitabeli lahendus
 
 Hetkel toimib:
+* Kasutaja põhine sisselogimine
 * Tellimuste sisestamine
 * Tellimuste vormistamine müükideks
 * Dashboard:
