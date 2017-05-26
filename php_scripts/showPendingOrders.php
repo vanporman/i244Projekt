@@ -61,8 +61,6 @@
         </table>";
     mysqli_close($connection);
 
-//    header('Location: ../views/dashboardTest.html');
-//    exit;
 ?>
 </body>
 </html>

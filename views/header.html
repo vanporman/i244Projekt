@@ -48,13 +48,23 @@
                 <a class="navbar-brand" href="https://www.facebook.com/kuukukrops/">Kuuku</a>
             </div>
             <ul class="nav navbar-nav">
-                <?php if(isset($_SESSION['user']) && $_SESSION['role'] == 'admin' || $_SESSION['role'] == 'user'): ?>
+                <?php if(isset($_SESSION['user']) && $_SESSION['role'] == 'admin'): ?>
                 <li><a href="?page=dashboard">Ülevaade</a></li>
                 <li><a href="?page=orders">Tellimused</a></li>
                 <li><a href="?page=sales">Müügid</a></li>
                 <li><a href="?page=demos">Demod</a></li>
                 <li><a href="#">Ladu?</a></li>
                 <li><a href="#">Kustuta ridu?</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href=""><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
+                <li><a href="?page=logout">Logi välja</a></li>
+                <?php elseif(isset($_SESSION['user']) && $_SESSION['role'] == 'user'): ?>
+                <li><a href="?page=dashboard">Ülevaade</a></li>
+                <li><a href="?page=orders">Tellimused</a></li>
+                <li><a href="?page=sales">Müügid</a></li>
+                <li><a href="?page=demos">Demod</a></li>
+                <li><a href="#">Ladu?</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href=""><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
