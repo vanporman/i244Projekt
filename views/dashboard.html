@@ -127,10 +127,10 @@
                      if(!empty($value_sum)):
                  ?>
                 <tr>
-                    <th class='text-center'>SumOfClients</th>
-                    <th class='text-center'>AmountOfOrders</th>
-                    <th class='text-center'>SumOfOrders</th>
-                    <th class='text-center'>SumOfValues</th>
+                    <th class='text-center'>Kliente</th>
+                    <th class='text-center'>Tellimusi</th>
+                    <th class='text-center'>Ootel tellimusi</th>
+                    <th class='text-center'>Summa</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -149,17 +149,17 @@
             <table class='table table-striped'>
             <thead>
             <tr>
-                <th>Order</th>
-                <th>Client</th>
-                <th>DateofOrder</th>
-                <th>DateofSale</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Sum</th>
-                <th>Size</th>
-                <th>Status</th>
-                <th>Responsible</th>
-                <th>Comments</th>
+                <th>ID</th>
+                <th>Klient</th>
+                <th>Tellimuse kuupäev</th>
+                <th>Müügi kuupäev</th>
+                <th>Kogus</th>
+                <th>Hind</th>
+                <th>Summa kokku</th>
+                <th>Paki suurus</th>
+                <th>Staatus</th>
+                <th>Kes tegeleb?</th>
+                <th>Kommentaarid</th>
             </tr>
             </thead>
             <tbody>
@@ -168,16 +168,16 @@
                     foreach ($ourOrders as $id => $order):
             ?>
             <tr>
-                <td><?php echo htmlspecialchars($order['orderID']); ?></td>
-                <td><?php echo htmlspecialchars($order['customerName']); ?></td>
-                <td><?php echo htmlspecialchars($order['orderDate']); ?></td>
-                <td><?php echo htmlspecialchars($order['saleDate']); ?></td>
-                <td><?php echo htmlspecialchars($order['orderAmount']); ?></td>
-                <td><?php echo htmlspecialchars($order['priceOfItem']); ?></td>
-                <td><?php echo htmlspecialchars($order['sumOfOrder']); ?></td>
-                <td><?php echo htmlspecialchars($order['sizeOfPack']); ?></td>
-                <td><?php echo htmlspecialchars($order['orderStatus']); ?></td>
-                <td><?php echo htmlspecialchars($order['whoIsResponsible']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['orderID']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['customerName']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['orderDate']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['saleDate']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['orderAmount']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['priceOfItem']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['sumOfOrder']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['sizeOfPack']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['orderStatus']); ?></td>
+                <td style="text-align: center"><?php echo htmlspecialchars($order['whoIsResponsible']); ?></td>
                 <td><?php echo htmlspecialchars($order['orderComments']); ?></td>
             </tr>
             <?php

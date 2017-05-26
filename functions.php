@@ -232,7 +232,7 @@ function showOrders(){
     }
     //k6ik
     else {
-        $query = "SELECT * FROM vanporman_orders ORDER BY orderID DESC";
+        $query = "SELECT * FROM vanporman_orders ORDER BY orderID DESC LIMIT 100";
         $query_sum = "SELECT
                     COUNT(customerName) AS KlienteKokku,
                     SUM(orderAmount) AS TellimusiKokku,
