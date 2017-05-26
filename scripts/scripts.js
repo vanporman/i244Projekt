@@ -78,6 +78,70 @@ function showOrdersFS(responseText) {
 }
 //<---laadamüügu tabel lõpp--->
 
+//<---tellimuste tabel algus--->
+function showOrdersHistory() {
+    getRequest(
+        '../kuuku/php_scripts/showOrdersHistory.php',
+        showOrdersOH,
+        drawErrorOH
+    );
+    return false;
+}
+
+function drawErrorOH() {
+    var container = document.getElementById('ordersInLine');
+    container.innerHTML = 'Bummer: there was an error!';
+}
+
+function showOrdersOH(responseText) {
+    var container = document.getElementById('ordersInLine');
+    container.innerHTML = responseText;
+}
+//<---tellimuste tabel lõpp--->
+
+//<---jaetellimuste tabel algus--->
+function showRetailOrders() {
+    getRequest(
+        '../kuuku/php_scripts/showRetailOrders.php',
+        showOrdersRO,
+        drawErrorRO
+    );
+    return false;
+}
+
+function drawErrorRO() {
+    var container = document.getElementById('ordersRetail');
+    container.innerHTML = 'Bummer: there was an error!';
+}
+
+function showOrdersRO(responseText) {
+    var container = document.getElementById('ordersRetail');
+    container.innerHTML = responseText;
+}
+//<---jaetellimuste tabel lõpp--->
+
+//<---hulgitellimuste tabel algus--->
+function showWholesaleOrders() {
+    getRequest(
+        '../kuuku/php_scripts/showWholesaleOrders.php',
+        showOrdersWO,
+        drawErrorWO
+    );
+    return false;
+}
+
+function drawErrorWO() {
+    var container = document.getElementById('ordersWholesale');
+    container.innerHTML = 'Bummer: there was an error!';
+}
+
+function showOrdersWO(responseText) {
+    var container = document.getElementById('ordersWholesale');
+    container.innerHTML = responseText;
+}
+//<---hulgitellimuste tabel lõpp--->
+
+
 // helper function for cross-browser request object
 function getRequest(url, success, error) {
     var req = false;

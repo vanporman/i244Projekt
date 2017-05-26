@@ -17,7 +17,11 @@ $connection = mysqli_connect($host, $user, $pass, $db);
                         WHERE orderStatus = 'Hulgimüük'";
     $result = mysqli_query($connection, $query_wholesale) or die("$query_wholesale - ".mysqli_error($connection));
     while ($row = $result -> fetch_assoc()){
-        echo "<tr>".$row['TellimusiKokku']." pakki</tr>";
+        if (empty($row['TellimusiKokku'])){
+            echo "<tr>0</tr>";
+        } else {
+            echo "<tr><b>".$row['TellimusiKokku']."</b> pakki</tr>";
+        }
     };
 
     mysqli_close($connection);

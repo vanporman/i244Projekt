@@ -17,7 +17,11 @@
                     WHERE orderStatus = 'Jaemüük'";
     $result = mysqli_query($connection, $query_retail) or die("$query_retail - ".mysqli_error($connection));
     while ($row = $result -> fetch_assoc()){
-        echo "<tr>".$row['TellimusiKokku']." pakki</tr>";
+        if (empty($row['TellimusiKokku'])){
+            echo "<tr>0</tr>";
+        } else {
+            echo "<tr><b>".$row['TellimusiKokku']."</b> pakki</tr>";
+        }
     };
     mysqli_close($connection);
 ?>

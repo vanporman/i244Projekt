@@ -44,11 +44,11 @@
                 </tr>
                 <tr>
                     <td>Jaetellmused:</td>
-                    <td id="orderRetail"></td>
+                    <td id="ordersRetail"></td>
                 </tr>
                 <tr>
                     <td>Hulgitellimused</td>
-                    <td id="orderWholesale"></td>
+                    <td id="ordersWholesale"></td>
                 </tr>
                 </tbody>
             </table>
@@ -104,7 +104,6 @@
                         <option>Jaemüük</option>
                         <option>Hulgimüük</option>
                         <option>Üritustemüük</option>
-                        <option>Demopakk</option>
                     </select>
                 </div>
 
@@ -117,17 +116,36 @@
     </div>
 </div>
 <hr>
-<!--<?php if (!empty($_SESSION['user'])) echo "<h1>Tere tulemast ".$_SESSION['user']."</h1>"?>-->
-<p style="color:red">
-    <?php if (!empty($_SESSION['uus_id'])){
-		echo 'Uue rea id: '.$_SESSION['uus_id'];
-		unset($_SESSION['uus_id']);
-	}?>
-</p>
+
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-md-1'></div>
         <div class='col-md-10'>
+            <table class='table table-striped'>
+                <thead>
+                <?php
+                     if(!empty($value_sum)):
+                 ?>
+                <tr>
+                    <th class='text-center'>SumOfClients</th>
+                    <th class='text-center'>AmountOfOrders</th>
+                    <th class='text-center'>SumOfOrders</th>
+                    <th class='text-center'>SumOfValues</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class='text-center'><?php echo htmlspecialchars($value_sum['KlienteKokku']); ?></td>
+                    <td class='text-center'><?php echo htmlspecialchars($value_sum['TellimusiKokku']); ?></td>
+                    <td class='text-center'><?php echo htmlspecialchars($value_sum['OotelTellimusi']); ?></td>
+                    <td class='text-center'><?php echo htmlspecialchars($value_sum['SummaKokku']); ?></td>
+                </tr>
+                <?php endif; ?>
+                </tbody>
+            </table>
+
+            <br>
+
             <table class='table table-striped'>
             <thead>
             <tr>

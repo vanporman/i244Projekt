@@ -20,7 +20,7 @@
         if (empty($row['TellimusiKokku'])){
             echo "<tr>0</tr>";
         } else {
-            echo "<tr>".$row['TellimusiKokku']." pakki</tr>";
+            echo "<tr><b>".$row['TellimusiKokku']."</b> pakki</tr>";
         }
 
     };

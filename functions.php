@@ -83,54 +83,168 @@ function showOrders(){
 
     //yhekaupa
     if (!empty($cN) && empty($dR) && empty($wIR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN'";
     } elseif (!empty($dR) && empty($cN) && empty($wIR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR'";
+        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE orderDate = '$dR'";
     } elseif (!empty($wIR) && empty($cN) && empty($dR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE whoIsResponsible = '$wIR'";
+        $query = "SELECT * FROM vanporman_orders WHERE whoIsResponsible = '$wIR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE whoIsResponsible = '$wIR'";
     } elseif (!empty($oS) && empty($cN) && empty($dR) && empty($wIR)){
-        $query = "SELECT * FROM vanporman_orders WHERE orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE orderStatus = '$oS'";
     }
     //kahekaupa customerName-iga
     elseif (!empty($cN) && !empty($dR) && empty($wIR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND orderDate = '$dR'";
     } elseif (!empty($cN) && !empty($wIR) && empty($dR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND whoIsResponsible = '$wIR'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND whoIsResponsible = '$wIR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND whoIsResponsible = '$wIR'";
     } elseif (!empty($cN) && !empty($oS) && empty($dR) && empty($wIR)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND orderStatus = '$oS'";
     }
     //kahekaupa orderDate-iga
     elseif (!empty($dR) && !empty($wIR) && empty($cN) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR'";
+        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR'";
     } elseif (!empty($dR) && !empty($oS) && empty($cN) && empty($wIR)){
-        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE orderDate BETWEEN '$dR' AND orderStatus = '$oS'";
     }
     //kahekaupa whoIsResponsible-ga
     elseif (!empty($wIR) && !empty($oS) && empty($cN) && empty($dR)){
-        $query = "SELECT * FROM vanporman_orders WHERE whoIsResponsible = '$wIR' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE whoIsResponsible = '$wIR' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE whoIsResponsible = '$wIR' AND orderStatus = '$oS'";
     }
     //kolmekaupa customerName-iga
     elseif (!empty($cN) && !empty($dR) && !empty($wIR) && empty($oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR'";
     } elseif (!empty($cN) && !empty($dR) && !empty($oS) && empty($wIR)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND orderDate BETWEEN '$dR' AND orderStatus = '$oS'";
     } elseif (!empty($cN) && !empty($wIR) && !empty($oS) && empty($dR)){
-        $query = "SELECT * FROM vanporman_orders  WHERE customerName = '$cN' AND whoIsResponsible '$wIR' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders  WHERE customerName = '$cN' AND whoIsResponsible '$wIR' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' AND whoIsResponsible '$wIR' AND orderStatus = '$oS'";
     }
     //kolmekaupa orderDate-iga
     elseif (!empty($dR) && !empty($wIR) && !empty($oS) && empty($cN)){
-        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR' AND orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR' AND orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE orderDate BETWEEN '$dR' AND whoIsResponsible = '$wIR' AND orderStatus = '$oS'";
     }
     //v6i p2ring
     elseif (!empty($cN || $dR || $wIR || $oS)){
-        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' OR orderDate BETWEEN '$dR' OR whoIsResponsible = '$wIR' OR orderStatus = '$oS'";
+        $query = "SELECT * FROM vanporman_orders WHERE customerName = '$cN' OR orderDate BETWEEN '$dR' OR whoIsResponsible = '$wIR' OR orderStatus = '$oS' ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders
+                    WHERE customerName = '$cN' OR orderDate BETWEEN '$dR' OR whoIsResponsible = '$wIR' OR orderStatus = '$oS'";
     }
     //k6ik
     else {
         $query = "SELECT * FROM vanporman_orders ORDER BY orderID DESC";
+        $query_sum = "SELECT
+                    COUNT(customerName) AS KlienteKokku,
+                    SUM(orderAmount) AS TellimusiKokku,
+                    COUNT(orderStatus) AS OotelTellimusi,
+                    SUM(sumOfOrder) AS SummaKokku
+                    FROM vanporman_orders";
     }
 
     $result = mysqli_query($connection, $query);
+    $result_sum = mysqli_query($connection, $query_sum);
+
+    $value_sum = mysqli_fetch_assoc($result_sum);
 
     while ($row = mysqli_fetch_assoc($result)){
         $ourOrders[] = $row;
