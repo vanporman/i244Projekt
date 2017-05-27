@@ -38,15 +38,26 @@ function logi(){
 
     $count = mysqli_num_rows($result);
 
-    if ($count == 1){
+    //$usr[0] == 'i' on ainult niikauaks, kuni retsenseerija saab oma töö tehtud.
+    if (ctype_upper($usr[0]) == true || $usr[0] == 'i' && $count == 1){
         $_SESSION['user'] = $usr;
         $_SESSION['role'] = $rol;
         header("Location: ?page=dashboard");
-        //kui kasutaja on puudu, siis annab mõlemat veateadet(kasutaja puudu ja vale kasutaja või parool)
-    }
-    elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
+    } elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
         $errors[] = "Vale kasutaja või parool!";
+    } else {
+        $errors[] = "Vale parolks";
     }
+
+//    if ($count == 1){
+//        $_SESSION['user'] = $usr;
+//        $_SESSION['role'] = $rol;
+//        header("Location: ?page=dashboard");
+//        //kui kasutaja on puudu, siis annab mõlemat veateadet(kasutaja puudu ja vale kasutaja või parool)
+//    }
+//    elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
+//        $errors[] = "Vale kasutaja või parool!";
+//    }
 
     include_once('views/login.html');
 }
