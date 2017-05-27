@@ -141,6 +141,27 @@ function showOrdersWO(responseText) {
 }
 //<---hulgitellimuste tabel lõpp--->
 
+//<---demo tabel algus--->
+function showDemoPacks() {
+    getRequest(
+        '../kuuku/php_scripts/showDemos.php',
+        showOrdersDP,
+        drawErrorDP
+    );
+    return false;
+}
+
+function drawErrorDP() {
+    var container = document.getElementById('demoPacks');
+    container.innerHTML = 'Bummer: there was an error!';
+}
+
+function showOrdersDP(responseText) {
+    var container = document.getElementById('demoPacks');
+    container.innerHTML = responseText;
+}
+//<---demo tabel lõpp--->
+
 
 // helper function for cross-browser request object
 function getRequest(url, success, error) {

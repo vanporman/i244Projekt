@@ -29,6 +29,9 @@ switch($page){
     case "demos":
         demos();
         break;
+    case "admin":
+        include_once ('views/adminnile.html');
+        break;
     case "logout":
         logout();
         break;

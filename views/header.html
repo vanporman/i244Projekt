@@ -37,11 +37,21 @@
                 }
             });
         });
+
+        function ainultAdminnile() {
+            alert("Kui oled administraator, saad siit edasi!");
+        }
     </script>
     <meta charset="UTF-8">
     <title>Kuuku</title>
 </head>
-<body onload="showRetailHistory(); showWholesaleHistory(); showFairsaleHistory(); showOrdersHistory(); showRetailOrders(); showWholesaleOrders()">
+<body onload="showRetailHistory();
+              showWholesaleHistory();
+              showFairsaleHistory();
+              showOrdersHistory();
+              showRetailOrders();
+              showWholesaleOrders();
+              showDemoPacks()">
     <nav class="navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -53,21 +63,22 @@
                 <li><a href="?page=orders">Tellimused</a></li>
                 <li><a href="?page=sales">Müügid</a></li>
                 <li><a href="?page=demos">Demod</a></li>
-                <li><a href="#">Ladu?</a></li>
-                <li><a href="#">Kustuta ridu?</a></li>
+                <li><a href="#" style="text-decoration: line-through;">Ladu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href=""><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
+                <li><a href="?page=admin"><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
                 <li><a href="?page=logout">Logi välja</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
                 <?php elseif(isset($_SESSION['user']) && $_SESSION['role'] == 'user'): ?>
                 <li><a href="?page=dashboard">Ülevaade</a></li>
                 <li><a href="?page=orders">Tellimused</a></li>
                 <li><a href="?page=sales">Müügid</a></li>
                 <li><a href="?page=demos">Demod</a></li>
-                <li><a href="#">Ladu?</a></li>
+                <li><a href="#" style="text-decoration: line-through;">Ladu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href=""><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
+                <li><a href="" title="Ainult administraatorile" onclick="ainultAdminnile()"><?php if (!empty($_SESSION['user'])) echo "Tere, ".$_SESSION['user'].""?></a></li>
                 <li><a href="?page=logout">Logi välja</a></li>
                 <?php endif; ?>
             </ul>

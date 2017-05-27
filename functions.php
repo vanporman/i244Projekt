@@ -14,9 +14,9 @@ function logi(){
     global $connection;
     $errors = array();
     $usr = '';
-    //kasutaja on 'kuuku' või 'i244Test'
+    //kasutaja 'i244Test'
     $psw = '';
-    //parool on 'Nufbiq19' või 'i244Projekt'
+    //parool on 'i244Projekt'
     $rol = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         if (isset($_POST['username']) && $_POST['username'] != ''){
@@ -401,4 +401,61 @@ function makeSale(){
     }
 
     include_once ('views/sales.html');
+}
+
+function demos(){
+    global $connection;
+
+    $ourDemos = array();
+
+    $demoClient = '';
+    $demoDate = '';
+    $demoAmount = '';
+    $demoPackSize = '';
+    $demoComments = '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if (isset($_POST['demoClient']) && $_POST['demoClient'] != ""){
+            $demoClient = htmlspecialchars(mysqli_real_escape_string($connection, $_POST['demoClient']));
+        }
+        if (isset($_POST['singledate']) && $_POST['singledate'] != ""){
+            $demoDate = htmlspecialchars($_POST['singledate']);
+        }
+        if (isset($_POST['demoAmount']) && $_POST['demoAmount'] != ""){
+            $demoAmount = htmlspecialchars(mysqli_real_escape_string($connection, $_POST['demoAmount']));
+        }
+        if (isset($_POST['demoPackSize']) && $_POST['demoPackSize'] != ""){
+            $demoPackSize = htmlspecialchars(mysqli_real_escape_string($connection, $_POST['demoPackSize']));
+        }
+        if (isset($_POST['demoComments']) && $_POST['demoComments'] != ""){
+            $demoComments = htmlspecialchars(mysqli_real_escape_string($connection, $_POST['demoComments']));
+        }
+    }
+
+    if(isset($_POST['sent'])) {
+        $query = "INSERT INTO vanporman_demopacks (demoClient, 
+                                                demoDate, demoAmount, 
+                                                demoPackSize, demoComments) 
+                                                VALUES('$demoClient', '$demoDate', 
+                                                '$demoAmount', '$demoPackSize', 
+                                                '$demoComments')";
+
+        $result = mysqli_query($connection, $query) or die("$query - " . mysqli_error($connection));
+
+        $row_id = mysqli_insert_id($connection);
+
+        if (isset($row_id)){
+            $confirm = " - demo pakid lisatud!";
+        }
+    }
+
+    $query_demos = "SELECT * FROM vanporman_demopacks ORDER BY demoID DESC LIMIT 100";
+    $result_demos = mysqli_query($connection, $query_demos) or die("$query_demos - " . mysqli_error($connection));
+    while ($row = mysqli_fetch_assoc($result_demos)){
+        $ourDemos[]=$row;
+    }
+
+    mysqli_close($connection);
+
+    include_once ('views/demos.html');
 }

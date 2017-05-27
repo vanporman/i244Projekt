@@ -1,58 +1,73 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <meta charset="UTF-8">
-    <title>Demo pakid</title>
-  </head>
-  <body>
-      <nav class="navbar-default">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="dashboard.php">Kuuku demo pakid</a>
-              </div>
-              <ul class="nav navbar-nav">
-                  <li><a href="orders.html">Tellimused</a></li>
-                  <li><a href="sales.php">Müügid</a></li>
-                  <li class="active"><a href="demos.html">Demod</a></li>
-                  <li><a href="cashbox.html">Kassa</a></li>
-              </ul>
-          </div>
-      </nav>
-      
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                  <h3>Demo pakid</h3>
-                  <form>
-                      <div class="form-group">
-                          <input type="hidden" name="demoID" value="demoID">
-                      </div>
-                      <div class="form-group">
-                          <label for="demoCustomer">Klient:</label>
-                          <input type="text" class="form-control" id="demoCustomer" name="customerName" placeholder="Klient">
-                      </div>
-                      <div class="form-group">
-                          <label for="date">Kuupäev:</label>
-                          <input type="date" class="form-control" id="date" name="orderDate">
-                      </div>
-                      <div class="form-group">
-                          <label for="demoAmount">Pakkide kogus:</label>
-                          <input type="number" class="form-control" id="demoAmount" name="orderAmount" placeholder="Kogus">
-                      </div>
-                      <div class="form-group">
-                          <label for="demoComments">Lisainfo:</label>
-                          <textarea class="form-control" id="demoComments" name="demoComments"></textarea>
-                      </div>
-                      <div class="form-group">
-                          <button type="submit" class="btn">Sisesta</button>
-                      </div>
-                  </form>
-              </div>
-            <div class="col-md-4"></div>
+
+
+<div class="container-fluid">
+    <h1>Demo pakid!</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <h5>Demo pakkide sisestus vorm<?php if (isset($confirm)): ?><span style="color:red; padding-top: 5px; font-size: 60%"><?php echo $confirm; ?></span><?php endif; ?></h5>
+            <form action="?page=demos" method="POST" name="chipsDemos">
+                <div class="form-group">
+                    <label for="demoClient">Demo klient:</label>
+                    <input type="text" class="form-control" id="demoClient" name="demoClient" placeholder="Klient" required>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="demoDate">Demo kuupäev:</label>
+                    <input type="text" class="form-control" id="demoDate" name="singledate" required>
+                    <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+                </div>
+                <div class="form-group">
+                    <label for="demoAmount">Kogus:</label>
+                    <input type="number" min="0" class="form-control" id="demoAmount" name="demoAmount" placeholder="Kogus" required>
+                </div>
+                <div class="form-group">
+                    <label for="demoPackSize">Paki suurus:</label>
+                    <select class="form-control" id="demoPackSize" name="demoPackSize" required>
+                        <option disabled selected value=>-- vali paki suurus</option>
+                        <option>50 g</option>
+                        <option>90 g</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="demoComments">Lisainfo:</label>
+                    <textarea class="form-control" id="demoComments" name="demoComments"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="sent" class="btn btn-success" value="Sisesta">
+                </div>
+            </form>
         </div>
-      </div>
-  </body>
-</html>
+        <div class="col-sm-8" style="background-color:#f5f5f0;">
+            <h5>Demo pakkide tabel</h5>
+            <table class='table table-striped'>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Demo klient</th>
+                    <th>Kuupäev</th>
+                    <th>Kogus</th>
+                    <th>Paki suurus</th>
+                    <th>Kommentaarid</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(!empty($ourDemos)):
+                    foreach ($ourDemos as $id => $demo):
+                ?>
+                <tr>
+                    <td style="text-align: center"><?php echo htmlspecialchars($demo['demoID']); ?></td>
+                    <td style="text-align: center"><?php echo htmlspecialchars($demo['demoClient']); ?></td>
+                    <td style="text-align: center"><?php echo htmlspecialchars($demo['demoDate']); ?></td>
+                    <td style="text-align: center"><?php echo htmlspecialchars($demo['demoAmount']); ?></td>
+                    <td style="text-align: center"><?php echo htmlspecialchars($demo['demoPackSize']); ?></td>
+                    <td><?php echo htmlspecialchars($demo['demoComments']); ?></td>
+                </tr>
+                <?php
+                    endforeach;
+                    endif;
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
