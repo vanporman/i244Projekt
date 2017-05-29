@@ -38,11 +38,21 @@ function login(){
     $count = mysqli_num_rows($result);
 
     //$usr[0] == 'i' on ainult niikauaks, kuni retsenseerija saab oma töö tehtud.
-    if (ctype_upper($usr[0]) == true || $usr[0] == 'i' && $count == 1){
+//    if (ctype_upper($usr[0]) == true || $usr[0] == 'i' && $count == 1){
+//        $_SESSION['user'] = $usr;
+//        $_SESSION['role'] = $rol;
+//        header("Location: ?page=dashboard");
+//    } elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
+//        $errors[] = "Vale kasutaja või parool!";
+//    } else {
+//        $errors[] = "Vale parolks";
+//    }
+
+    if ($count == 1 && $row['usr'] == $usr || $row['psw'] == SHA1('$psw')){
         $_SESSION['user'] = $usr;
         $_SESSION['role'] = $rol;
         header("Location: ?page=dashboard");
-    } elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
+    } elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != SHA1('$psw')) {
         $errors[] = "Vale kasutaja või parool!";
     } else {
         $errors[] = "Vale parolks";
