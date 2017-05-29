@@ -60,14 +60,14 @@
     outline: none;
     background-color: #5bc0de;
     border-color: #46b8da;
-    color: #673921;
+    color: #fff;
     cursor: pointer;
     padding: 10px;
     border-radius: 10px;
 }
 
 #buttonToTop:hover {
-    color: #673921;
+    color: #fff;
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
