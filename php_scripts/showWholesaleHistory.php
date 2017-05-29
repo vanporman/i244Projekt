@@ -18,9 +18,9 @@ $connection = mysqli_connect($host, $user, $pass, $db);
     $result = mysqli_query($connection, $query_wholesale) or die("$query_wholesale - ".mysqli_error($connection));
     while ($row = $result -> fetch_assoc()){
         if (empty($row['TellimusiKokku'])){
-            echo "<tr>0</tr>";
+            echo "0";
         } else {
-            echo "<tr><b>".$row['TellimusiKokku']."</b> pakki</tr>";
+            echo "<b>".$row['TellimusiKokku']."</b> pakki";
         }
     };
 

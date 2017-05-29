@@ -7,10 +7,9 @@ function connect_db(){
     $pass="t3st3r123";
     $db="test";
     $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
-//    mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 }
 
-function logi(){
+function login(){
     global $connection;
     $errors = array();
     $usr = '';
@@ -49,16 +48,6 @@ function logi(){
         $errors[] = "Vale parolks";
     }
 
-//    if ($count == 1){
-//        $_SESSION['user'] = $usr;
-//        $_SESSION['role'] = $rol;
-//        header("Location: ?page=dashboard");
-//        //kui kasutaja on puudu, siis annab mõlemat veateadet(kasutaja puudu ja vale kasutaja või parool)
-//    }
-//    elseif ($count == 1 && $row['usr'] != $usr || $row['psw'] != $psw) {
-//        $errors[] = "Vale kasutaja või parool!";
-//    }
-
     include_once('views/login.html');
 }
 
@@ -68,6 +57,7 @@ function logout(){
     header("Location: ?");
 }
 
+//tellimuste ja myykide tabeli p2ringud
 function showOrders(){
 
     global $connection;
@@ -264,6 +254,7 @@ function showOrders(){
     include_once ('views/dashboard.html');
 }
 
+//tellimuste sisestamine
 function insertOrders(){
 
     global $connection;
@@ -330,11 +321,10 @@ function insertOrders(){
         mysqli_close($connection);
     }
 
-
-
     include_once ('views/orders.html');
 }
 
+//otsitakse tellimusi, mida siis hiljem myykideks muuta
 function sale(){
 
     global $connection;
@@ -342,7 +332,6 @@ function sale(){
     $changeOrders = array();
     $cN = '';
     $dR = '';
-//    $query = '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['customerName']) && $_POST['customerName'] != "") {
@@ -362,15 +351,15 @@ function sale(){
     }
 
     $result = mysqli_query($connection, $query);
+    //kui on mitu samanimega või samal kuupäeval, siis võetakse viimane
     $value = mysqli_fetch_assoc($result);
-//    $myrow = $value;
 
-//    while ($row = mysqli_fetch_assoc($result)){
-//        $changeOrders[] = $row;
-//    };
+    mysqli_close($connection);
+
     include_once('views/sales.html');
 }
 
+//tellimuse staatuse muutmine myygiks
 function makeSale(){
 
     global $connection;
@@ -411,9 +400,12 @@ function makeSale(){
         };
     }
 
+    mysqli_close($connection);
+
     include_once ('views/sales.html');
 }
 
+//demo pakkide sisestamine ja kuvamine
 function demos(){
     global $connection;
 

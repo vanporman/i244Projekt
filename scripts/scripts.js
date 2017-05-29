@@ -15,6 +15,28 @@ function calculatePrice(chipsOrders) {
 
     document.getElementById("sumOfOrder").value = sumOfOrders;
 }
+
+//<---kogumüügi tabel algus--->
+function showAllSales() {
+    getRequest(
+        '../kuuku/php_scripts/showSalesSum.php',
+        showOrdersAS,
+        drawErrorAS
+    );
+    return false;
+}
+
+function drawErrorAS() {
+    var containerRH = document.getElementById('SumOfSales');
+    containerRH.innerHTML = 'Bummer: there was an error!';
+}
+
+function showOrdersAS(responseText) {
+    var containerRH = document.getElementById('sumOfSales');
+    containerRH.innerHTML = responseText;
+}
+//<---kogumüügu tabel lõpp--->
+
 //<---jaemüügi tabel algus--->
 function showRetailHistory() {
     getRequest(
@@ -26,13 +48,13 @@ function showRetailHistory() {
 }
 
 function drawErrorRH() {
-    var container = document.getElementById('retailSale');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerRH = document.getElementById('retailSale');
+    containerRH.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersRH(responseText) {
-    var container = document.getElementById('retailSale');
-    container.innerHTML = responseText;
+    var containerRH = document.getElementById('retailSale');
+    containerRH.innerHTML = responseText;
 }
 //<---jaemüügu tabel lõpp--->
 
@@ -47,13 +69,13 @@ function showWholesaleHistory() {
 }
 
 function drawErrorWS() {
-    var container = document.getElementById('wholeSale');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerWS = document.getElementById('wholeSale');
+    containerWS.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersWS(responseText) {
-    var container = document.getElementById('wholeSale');
-    container.innerHTML = responseText;
+    var containerWS = document.getElementById('wholeSale');
+    containerWS.innerHTML = responseText;
 }
 //<---hukgimüügu tabel lõpp--->
 
@@ -68,13 +90,13 @@ function showFairsaleHistory() {
 }
 
 function drawErrorFS() {
-    var container = document.getElementById('fairSale');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerWS = document.getElementById('fairSale');
+    containerWS.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersFS(responseText) {
-    var container = document.getElementById('fairSale');
-    container.innerHTML = responseText;
+    var containerWS = document.getElementById('fairSale');
+    containerWS.innerHTML = responseText;
 }
 //<---laadamüügu tabel lõpp--->
 
@@ -89,13 +111,13 @@ function showOrdersHistory() {
 }
 
 function drawErrorOH() {
-    var container = document.getElementById('ordersInLine');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerOH = document.getElementById('ordersInLine');
+    containerOH.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersOH(responseText) {
-    var container = document.getElementById('ordersInLine');
-    container.innerHTML = responseText;
+    var containerOH = document.getElementById('ordersInLine');
+    containerOH.innerHTML = responseText;
 }
 //<---tellimuste tabel lõpp--->
 
@@ -110,13 +132,13 @@ function showRetailOrders() {
 }
 
 function drawErrorRO() {
-    var container = document.getElementById('ordersRetail');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerRO = document.getElementById('ordersRetail');
+    containerRO.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersRO(responseText) {
-    var container = document.getElementById('ordersRetail');
-    container.innerHTML = responseText;
+    var containerRO = document.getElementById('ordersRetail');
+    containerRO.innerHTML = responseText;
 }
 //<---jaetellimuste tabel lõpp--->
 
@@ -131,13 +153,13 @@ function showWholesaleOrders() {
 }
 
 function drawErrorWO() {
-    var container = document.getElementById('ordersWholesale');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerWO = document.getElementById('ordersWholesale');
+    containerWO.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersWO(responseText) {
-    var container = document.getElementById('ordersWholesale');
-    container.innerHTML = responseText;
+    var containerWO = document.getElementById('ordersWholesale');
+    containerWO.innerHTML = responseText;
 }
 //<---hulgitellimuste tabel lõpp--->
 
@@ -152,13 +174,13 @@ function showDemoPacks() {
 }
 
 function drawErrorDP() {
-    var container = document.getElementById('demoPacks');
-    container.innerHTML = 'Bummer: there was an error!';
+    var containerDP = document.getElementById('demoPacks');
+    containerDP.innerHTML = 'Bummer: there was an error!';
 }
 
 function showOrdersDP(responseText) {
-    var container = document.getElementById('demoPacks');
-    container.innerHTML = responseText;
+    var containerDP = document.getElementById('demoPacks');
+    containerDP.innerHTML = responseText;
 }
 //<---demo tabel lõpp--->
 

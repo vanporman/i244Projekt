@@ -49,3 +49,25 @@
 #sales-change-btn{
     margin-top: 20px;
 }
+
+#buttonToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    color: #673921;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#buttonToTop:hover {
+    color: #673921;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}

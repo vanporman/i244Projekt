@@ -12,7 +12,7 @@ include_once('views/header.html');
 
 switch($page){
     case "login":
-        logi();
+        login();
         break;
     case "dashboard":
         showOrders();

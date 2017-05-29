@@ -9,6 +9,7 @@
     <script type="text/javascript" src="modules/daterangepicker/daterangepicker.js"></script>
     <script type="text/javascript" src="scripts/scripts.js"></script>
     <script type="text/javascript">
+        //kuup2eva valikud
         $(function() {
             $('input[name="daterange"]').daterangepicker({
                 autoUpdateInput: false,
@@ -38,20 +39,38 @@
             });
         });
 
+        //kui sa pole admin, siis ei saa edasi
         function ainultAdminnile() {
             alert("Kui oled administraator, saad siit edasi!");
+        }
+
+        //Tagasi yles nupu funktsioon
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("buttonToTop").style.display = "block";
+            } else {
+                document.getElementById("buttonToTop").style.display = "none";
+            }
+        }
+
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
     </script>
     <meta charset="UTF-8">
     <title>Kuuku</title>
 </head>
-<body onload="showRetailHistory();
+<body onload="showAllSales();
+              showRetailHistory();
               showWholesaleHistory();
               showFairsaleHistory();
               showOrdersHistory();
               showRetailOrders();
               showWholesaleOrders();
-              showDemoPacks()">
+              showDemoPacks();">
     <nav class="navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -84,4 +103,5 @@
             </ul>
         </div>
     </nav>
+    <button onclick="backToTop()" id="buttonToTop"><span class="glyphicon glyphicon-arrow-up"></span> tagasi</button>
     <div>
