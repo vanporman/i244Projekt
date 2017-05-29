@@ -195,4 +195,3 @@ function getRequest(url, success, error) {
     req.send(null);
     return req;
 }
-
